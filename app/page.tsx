@@ -1,101 +1,103 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { ArrowRight, CheckCircle, Smartphone, BarChart, Target, Bell } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="container flex flex-col items-center justify-center gap-4 py-24 md:py-32">
+        <h1 className="text-4xl font-bold text-center sm:text-5xl md:text-6xl">
+          Progress Through <span className="text-primary">Discipline</span>
+        </h1>
+        <p className="max-w-[42rem] text-center text-muted-foreground sm:text-xl">
+          Take control and transform your life—one duty at a time. Build lasting habits through accountability and tracking.
+        </p>
+        <div className="flex gap-4">
+          <Link href="https://apps.apple.com/gb/app/instagrit/id6737732671">
+            <Button size="lg">
+              Download Now <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      {/* Features Section */}
+      <section className="container py-24 sm:py-32">
+        <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <FeatureCard 
+            icon={<CheckCircle />}
+            title="Smart Duty Tracking"
+            description="Set daily duties, track progress, and never lose sight of your goals"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<BarChart />}
+            title="Visual Progress Analytics"
+            description="Get clear, intuitive insights into your progress with easy-to-read visuals"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard 
+            icon={<Target />}
+            title="Achievement System"
+            description="Stay motivated with rewards and milestones for consistent effort"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="container py-24 sm:py-32 bg-muted/50">
+        <h2 className="text-3xl font-bold text-center mb-12">Simple Pricing</h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <PriceCard 
+            title="Monthly"
+            price="£2.99"
+            period="/month"
+          />
+          <PriceCard 
+            title="Yearly"
+            price="£22.99"
+            period="/year"
+            popular={true}
+          />
+          <PriceCard 
+            title="Lifetime"
+            price="£39.99"
+            period="/one-time"
+          />
+        </div>
+      </section>
     </div>
-  );
+  )
+}
+
+function FeatureCard({ icon, title, description }) {
+  return (
+    <div className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-sm">
+      <div className="p-3 rounded-full bg-primary/10 mb-4">
+        {icon}
+      </div>
+      <h3 className="font-semibold mb-2">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function PriceCard({ title, price, period, popular = false }) {
+  return (
+    <div className={`relative p-6 bg-card rounded-lg shadow-sm ${popular ? 'border-2 border-primary' : 'border border-border'}`}>
+      {popular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full">
+          Most Popular
+        </span>
+      )}
+      <div className="text-center">
+        <h3 className="font-semibold mb-2">{title}</h3>
+        <div className="flex justify-center items-baseline mb-4">
+          <span className="text-4xl font-bold">{price}</span>
+          <span className="text-muted-foreground">{period}</span>
+        </div>
+        <Button className="w-full">Get Started</Button>
+      </div>
+    </div>
+  )
 }
