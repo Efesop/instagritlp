@@ -38,7 +38,7 @@ function Testimonial({ quote, author, rating }: TestimonialProps) {
           <Star key={i} className="h-4 w-4 fill-primary text-primary" />
         ))}
       </div>
-      <p className="text-muted-foreground mb-4">"{quote}"</p>
+      <p className="text-muted-foreground mb-4">&ldquo;{quote}&rdquo;</p>
       <p className="font-semibold">{author}</p>
     </Card>
   )
@@ -132,7 +132,7 @@ export default function Home() {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl font-bold sm:text-4xl mb-4">Loved by users</h2>
           <p className="text-muted-foreground">
-            Don't just take our word for it - hear what our users have to say
+            Don&apos;t just take our word for it - hear what our users have to say
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -147,7 +147,7 @@ export default function Home() {
             rating={5}
           />
           <Testimonial
-            quote="The best habit tracking app I've used. Clean interface and powerful features."
+            quote="The best habit tracking app I have used. Clean interface and powerful features."
             author="David M."
             rating={5}
           />
