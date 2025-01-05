@@ -1,30 +1,9 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, CheckCircle, BarChart, Target, Star, Calendar, Bell } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
-
-interface FeatureCardProps {
-  icon: React.ReactNode
-  title: string
-  description: string
-}
-
-function FeatureCard({ icon, title, description }: FeatureCardProps) {
-  return (
-    <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-      <div className="p-6">
-        <div className="mb-4 inline-flex p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-          {icon}
-        </div>
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground">{description}</p>
-      </div>
-    </Card>
-  )
-}
+import { Card } from "@/components/ui/card"
 
 interface TestimonialProps {
   quote: string
@@ -250,7 +229,7 @@ export default function Home() {
                   description: "Get clear, intuitive insights into your progress with easy-to-read visuals",
                   gradient: "from-purple-500 to-pink-500"
                 }
-              ].map((feature, index) => (
+              ].map((feature) => (
                 <div 
                   key={feature.title}
                   className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-2xl shadow-zinc-200/50 border border-zinc-100 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1"
