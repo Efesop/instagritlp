@@ -1,6 +1,51 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Smartphone, BarChart, Target, Bell } from "lucide-react"
+import { ArrowRight, CheckCircle, BarChart, Target } from "lucide-react"
+
+interface FeatureCardProps {
+  icon: React.ReactNode
+  title: string
+  description: string
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
+  return (
+    <div className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-sm">
+      <div className="p-3 rounded-full bg-primary/10 mb-4">
+        {icon}
+      </div>
+      <h3 className="font-semibold mb-2">{title}</h3>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+interface PriceCardProps {
+  title: string
+  price: string
+  period: string
+  popular?: boolean
+}
+
+function PriceCard({ title, price, period, popular = false }: PriceCardProps) {
+  return (
+    <div className={`relative p-6 bg-card rounded-lg shadow-sm ${popular ? 'border-2 border-primary' : 'border border-border'}`}>
+      {popular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full">
+          Most Popular
+        </span>
+      )}
+      <div className="text-center">
+        <h3 className="font-semibold mb-2">{title}</h3>
+        <div className="flex justify-center items-baseline mb-4">
+          <span className="text-4xl font-bold">{price}</span>
+          <span className="text-muted-foreground">{period}</span>
+        </div>
+        <Button className="w-full">Get Started</Button>
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -66,38 +111,6 @@ export default function Home() {
           />
         </div>
       </section>
-    </div>
-  )
-}
-
-function FeatureCard({ icon, title, description }) {
-  return (
-    <div className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-sm">
-      <div className="p-3 rounded-full bg-primary/10 mb-4">
-        {icon}
-      </div>
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
-    </div>
-  )
-}
-
-function PriceCard({ title, price, period, popular = false }) {
-  return (
-    <div className={`relative p-6 bg-card rounded-lg shadow-sm ${popular ? 'border-2 border-primary' : 'border border-border'}`}>
-      {popular && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-sm rounded-full">
-          Most Popular
-        </span>
-      )}
-      <div className="text-center">
-        <h3 className="font-semibold mb-2">{title}</h3>
-        <div className="flex justify-center items-baseline mb-4">
-          <span className="text-4xl font-bold">{price}</span>
-          <span className="text-muted-foreground">{period}</span>
-        </div>
-        <Button className="w-full">Get Started</Button>
-      </div>
     </div>
   )
 }
