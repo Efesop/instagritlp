@@ -4,7 +4,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, CheckCircle, BarChart, Target, Star, Calendar, Bell } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
-import { motion } from "framer-motion"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 
 interface FeatureCardProps {
