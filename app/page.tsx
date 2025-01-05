@@ -148,7 +148,7 @@ export default function Home() {
               {/* iPhone Mockup */}
               <div className="relative z-20">
                 <IPhoneMockup 
-                  screenshot="/assets/landing.png"
+                  screenshot="/landing.png"
                   alt="Instagrit App Screenshot"
                 />
               </div>

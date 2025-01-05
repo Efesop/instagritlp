@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 
 interface IPhoneMockupProps {
@@ -11,7 +13,6 @@ export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
       {/* Dynamic Island */}
       <div className="absolute top-0 inset-x-0 h-6 flex justify-center">
         <div className="w-[120px] h-[35px] bg-black rounded-[20px] mt-2 flex items-center justify-center">
-          {/* Camera & Sensors */}
           <div className="flex gap-2">
             <div className="w-[12px] h-[12px] rounded-full bg-gray-900 ring-1 ring-gray-700" />
             <div className="w-[40px] h-[12px] rounded-full bg-gray-900" />
@@ -32,8 +33,9 @@ export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
           alt={alt}
           width={322}
           height={672}
-          className="w-full h-full object-cover"
+          className="object-cover"
           priority
+          unoptimized
         />
       </div>
     </div>
