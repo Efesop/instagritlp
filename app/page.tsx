@@ -103,16 +103,46 @@ export default function Home() {
             </div>
             <div className="flex-1 relative flex justify-center">
               {/* Notification Pills */}
-              <div className="absolute right-[10%] top-[20%] z-30">
+              {/* Top Right */}
+              <div className="absolute right-[10%] top-[10%] z-30">
                 <div className="bg-white rounded-full py-2 px-4 shadow-lg flex items-center gap-2 animate-float">
                   <CheckCircle className="h-5 w-5 text-green-500" />
                   <span className="text-sm font-medium">7 Day Streak!</span>
                 </div>
               </div>
-              <div className="absolute left-[10%] top-[60%] z-30">
+
+              {/* Top Left */}
+              <div className="absolute left-[5%] top-[30%] z-30">
+                <div className="bg-white rounded-full py-2 px-4 shadow-lg flex items-center gap-2 animate-float-delayed">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-400 to-pink-600" />
+                  <span className="text-sm font-medium">Sarah completed 3 duties</span>
+                </div>
+              </div>
+
+              {/* Middle Right */}
+              <div className="absolute right-[5%] top-[50%] z-30">
+                <div className="bg-white rounded-full py-2 px-4 shadow-lg flex items-center gap-2 animate-float">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
+                  <span className="text-sm font-medium">Mike is on fire! 🔥</span>
+                </div>
+              </div>
+
+              {/* Bottom Left */}
+              <div className="absolute left-[10%] bottom-[35%] z-30">
                 <div className="bg-white rounded-full py-2 px-4 shadow-lg flex items-center gap-2 animate-float-delayed">
                   <Target className="h-5 w-5 text-blue-500" />
                   <span className="text-sm font-medium">Goal Achieved</span>
+                </div>
+              </div>
+
+              {/* Bottom Right */}
+              <div className="absolute right-[8%] bottom-[15%] z-30">
+                <div className="bg-white rounded-full py-2 px-4 shadow-lg flex items-center gap-2 animate-float">
+                  <div className="flex -space-x-2">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-600" />
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600" />
+                  </div>
+                  <span className="text-sm font-medium">2 friends joined!</span>
                 </div>
               </div>
 
@@ -122,6 +152,11 @@ export default function Home() {
                   screenshot="/app-screenshot.png"
                   alt="Instagrit App Screenshot"
                 />
+              </div>
+
+              {/* Enhanced glow effect */}
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="w-[400px] h-[600px] bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-full blur-3xl" />
               </div>
             </div>
           </div>
