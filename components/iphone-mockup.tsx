@@ -8,6 +8,15 @@ interface IPhoneMockupProps {
 }
 
 export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
+  const basePath = process.env.NODE_ENV === 'production' ? '/instagritlp' : ''
+  const imagePath = `${basePath}${screenshot}`
+
+  console.log({
+    env: process.env.NODE_ENV,
+    basePath,
+    imagePath,
+  })
+
   return (
     <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[55px] h-[700px] w-[350px] shadow-xl">
       {/* Dynamic Island */}
@@ -28,12 +37,13 @@ export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
       
       {/* Screen */}
       <div className="relative rounded-[40px] overflow-hidden w-[322px] h-[672px] bg-white dark:bg-gray-800">
+        <div className="absolute inset-0 bg-zinc-100" />
         <Image
-          src={screenshot}
+          src={imagePath}
           alt={alt}
           width={322}
           height={672}
-          className="object-cover"
+          className="relative z-10 object-cover"
           priority
           unoptimized
         />
