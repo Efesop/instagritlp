@@ -1,0 +1,15 @@
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+} 

@@ -4,6 +4,8 @@ import { ArrowRight, CheckCircle, BarChart, Target, Star, Calendar, Bell } from 
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { TrackingIcon, StreakIcon, AnalyticsIcon } from '@/components/features/FeatureIcons';
 
 interface TestimonialProps {
   quote: string
@@ -60,15 +62,15 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
                 <Link 
                   href="https://apps.apple.com/gb/app/instagrit/id6737732671"
-                  className="relative group"
+                  className="relative group transform-gpu"
                 >
-                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl transition-all opacity-0 group-hover:opacity-100" />
+                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity will-change-transform backface-hidden" />
                   <Image
                     src="/app-store-badge.svg"
                     alt="Download on the App Store"
                     width={156}
                     height={52}
-                    className="h-[52px] w-auto relative transition-transform group-hover:scale-105"
+                    className="h-[52px] w-auto relative transform-gpu transition-transform group-hover:scale-105 will-change-transform backface-hidden"
                   />
                 </Link>
                 
@@ -101,7 +103,7 @@ export default function Home() {
                 ].map((feature) => (
                   <div
                     key={feature.text}
-                    className="group px-4 py-2 rounded-full bg-white border border-zinc-100 shadow-sm transition-all hover:shadow-md hover:scale-105"
+                    className="group px-4 py-2 rounded-full bg-white border border-zinc-100 shadow-sm transform-gpu transition-all hover:shadow-md hover:scale-105 will-change-transform backface-hidden"
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700">
                       {feature.icon}
@@ -212,52 +214,51 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: <CheckCircle className="h-8 w-8" />,
+                  icon: <TrackingIcon className="text-blue-600" />,
                   title: "Smart Duty Tracking",
                   description: "Set daily duties, track progress, and never lose sight of your goals",
-                  gradient: "from-blue-500 to-indigo-500"
+                  hoverGradient: "from-blue-500/10 to-blue-600/10"
                 },
                 {
-                  icon: <Calendar className="h-8 w-8" />,
+                  icon: <StreakIcon className="text-orange-500" />,
                   title: "Habit Streaks",
                   description: "Build momentum with visual streak tracking and daily completion stats",
-                  gradient: "from-indigo-500 to-purple-500"
+                  hoverGradient: "from-orange-500/10 to-orange-600/10"
                 },
                 {
-                  icon: <BarChart className="h-8 w-8" />,
+                  icon: <AnalyticsIcon className="text-green-500" />,
                   title: "Progress Analytics",
                   description: "Get clear, intuitive insights into your progress with easy-to-read visuals",
-                  gradient: "from-purple-500 to-pink-500"
+                  hoverGradient: "from-green-500/10 to-green-600/10"
                 }
               ].map((feature) => (
                 <div 
                   key={feature.title}
-                  className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-2xl shadow-zinc-200/50 border border-zinc-100 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1"
+                  className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-2xl shadow-zinc-200/50 border border-zinc-100 transform-gpu will-change-auto"
                 >
-                  {/* Background Gradient */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300">
-                    <div className={`w-full h-full bg-gradient-to-br ${feature.gradient}`} />
+                  {/* Background Gradient - Preload the opacity */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out">
+                    <div className={`w-full h-full bg-gradient-to-br ${feature.hoverGradient}`} />
                   </div>
 
-                  {/* Icon */}
-                  <div className="relative mb-6">
-                    <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-zinc-50 to-zinc-100/50 border border-zinc-100">
-                      <div className={`bg-gradient-to-br ${feature.gradient} bg-clip-text text-transparent`}>
+                  {/* Content Container - Hardware accelerated transform */}
+                  <div className="relative z-10 transform-gpu backface-hidden">
+                    <div className="relative mb-6">
+                      <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-zinc-50 to-zinc-100/50 border border-zinc-100">
                         {feature.icon}
                       </div>
                     </div>
+
+                    <h3 className="text-xl font-semibold mb-3 bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
+                      {feature.title}
+                    </h3>
+                    <p className="text-zinc-500 leading-relaxed">
+                      {feature.description}
+                    </p>
                   </div>
 
-                  {/* Content */}
-                  <h3 className="text-xl font-semibold mb-3 bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
-                    {feature.title}
-                  </h3>
-                  <p className="text-zinc-500 leading-relaxed">
-                    {feature.description}
-                  </p>
-
-                  {/* Hover line effect */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-blue-500/50 to-indigo-500/50" />
+                  {/* Bottom line - Separate transform */}
+                  <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-[width] duration-75 ease-out bg-gradient-to-r from-blue-500/50 to-indigo-500/50 transform-gpu" />
                 </div>
               ))}
             </div>
@@ -276,11 +277,16 @@ export default function Home() {
 
                 <div className="space-y-6">
                   {/* Achievement System */}
-                  <div className="group relative overflow-hidden rounded-2xl bg-white/50 backdrop-blur-sm p-6 transition-all duration-300 hover:bg-white/80 border border-white/20 hover:border-blue-100">
-                    <div className="flex gap-4 items-start relative z-10">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-indigo-500/10 group-hover:from-blue-500/20 group-hover:to-indigo-500/20 transition-colors">
+                  <div 
+                    className="group relative rounded-2xl bg-white/50 hover:bg-white/80 backdrop-blur-sm p-6 border border-white/20 hover:border-blue-100"
+                  >
+                    <div className="flex gap-4 items-start">
+                      {/* Icon container with simple background change */}
+                      <div className="p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10">
                         <Target className="h-6 w-6 text-blue-600" />
                       </div>
+
+                      {/* Text content */}
                       <div className="space-y-2">
                         <h3 className="font-semibold text-xl bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
                           Achievement System
@@ -290,16 +296,22 @@ export default function Home() {
                         </p>
                       </div>
                     </div>
-                    {/* Hover gradient line */}
-                    <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-blue-500/50 to-indigo-500/50" />
+                    
+                    {/* Optional: Simple highlight effect instead of line */}
+                    <div className="absolute inset-0 rounded-2xl bg-blue-500/0 group-hover:bg-blue-500/[0.02]" />
                   </div>
 
                   {/* Smart Reminders */}
-                  <div className="group relative overflow-hidden rounded-2xl bg-white/50 backdrop-blur-sm p-6 transition-all duration-300 hover:bg-white/80 border border-white/20 hover:border-blue-100">
-                    <div className="flex gap-4 items-start relative z-10">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition-colors">
+                  <div 
+                    className="group relative rounded-2xl bg-white/50 hover:bg-white/80 backdrop-blur-sm p-6 border border-white/20 hover:border-blue-100"
+                  >
+                    <div className="flex gap-4 items-start">
+                      {/* Icon container with simple background change */}
+                      <div className="p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10">
                         <Bell className="h-6 w-6 text-indigo-600" />
                       </div>
+
+                      {/* Text content */}
                       <div className="space-y-2">
                         <h3 className="font-semibold text-xl bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
                           Smart Reminders
@@ -309,8 +321,9 @@ export default function Home() {
                         </p>
                       </div>
                     </div>
-                    {/* Hover gradient line */}
-                    <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-indigo-500/50 to-purple-500/50" />
+                    
+                    {/* Optional: Simple highlight effect instead of line */}
+                    <div className="absolute inset-0 rounded-2xl bg-blue-500/0 group-hover:bg-blue-500/[0.02]" />
                   </div>
                 </div>
               </div>

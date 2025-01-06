@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply transition-[background,transform,opacity,colors,shadow] duration-200 motion-reduce:transition-none;
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -92,5 +98,61 @@ body {
 @layer utilities {
   .will-change-transform {
     will-change: transform;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 0 56.5;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 28.25 28.25;
+    stroke-dashoffset: -56.5;
+  }
+  100% {
+    stroke-dasharray: 56.5 0;
+    stroke-dashoffset: -56.5;
+  }
+}
+
+@keyframes check {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zap {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes chart {
+  0% {
+    transform: scaleY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0.3;
   }
 }
