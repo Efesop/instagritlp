@@ -117,7 +117,7 @@ export default function Home() {
               {/* Notification Pills */}
               {/* Top Right */}
               <div className="absolute right-[10%] top-[10%] z-30">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20">
+                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
                   <CheckCircle className="h-5 w-5 text-green-500" strokeWidth={2.5} />
                   <span className="text-sm font-medium bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
                     7 Day Streak!
@@ -127,7 +127,7 @@ export default function Home() {
 
               {/* Top Left */}
               <div className="absolute left-[5%] top-[30%] z-30">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl py-3 px-5 shadow-lg shadow-orange-500/5 flex items-center gap-3 animate-float-delayed border border-white/20">
+                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-orange-500/5 flex items-center gap-3 animate-float-delayed border border-white/20 will-change-transform">
                   <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-pink-600 ring-4 ring-orange-500/10" />
                   <span className="text-sm font-medium text-zinc-800">Sarah completed 3 duties</span>
                 </div>
@@ -135,7 +135,7 @@ export default function Home() {
 
               {/* Middle Right */}
               <div className="absolute right-[5%] top-[50%] z-30">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20">
+                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
                   <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 ring-4 ring-blue-500/10" />
                   <span className="text-sm font-medium text-zinc-800">Mike is on fire! 🔥</span>
                 </div>
@@ -143,7 +143,7 @@ export default function Home() {
 
               {/* Bottom Left */}
               <div className="absolute left-[10%] bottom-[35%] z-30">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float-delayed border border-white/20">
+                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float-delayed border border-white/20 will-change-transform">
                   <Target className="h-5 w-5 text-blue-500" strokeWidth={2.5} />
                   <span className="text-sm font-medium bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
                     Goal Achieved
@@ -153,7 +153,7 @@ export default function Home() {
 
               {/* Bottom Right */}
               <div className="absolute right-[8%] bottom-[15%] z-30">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl py-3 px-5 shadow-lg shadow-purple-500/5 flex items-center gap-3 animate-float border border-white/20">
+                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-purple-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
                   <div className="flex -space-x-1.5">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 ring-4 ring-green-500/10" />
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 ring-4 ring-purple-500/10" />
