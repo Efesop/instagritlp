@@ -1,11 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, CheckCircle, Target, Star, Bell } from "lucide-react"
+import { ArrowRight, CheckCircle, Target, Star, Bell, Check, Users2 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 import { Card } from "@/components/ui/card"
 //import { motion } from "framer-motion"
 import { TrackingIcon, StreakIcon, AnalyticsIcon } from '@/components/features/FeatureIcons';
+import { FeatureShowcase } from "./components/features/FeatureShowcase"
 
 interface TestimonialProps {
   quote: string
@@ -71,7 +72,7 @@ export default function Home() {
                 Progress Through{" "}
                 <span className="relative">
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    Discipline
+                    Shared Discipline
                   </span>
                   {/* Decorative elements */}
                   <div className="absolute -z-10 -inset-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 blur-xl opacity-50" />
@@ -107,6 +108,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+            
 
               <div className="flex flex-wrap gap-4">
                 {[
@@ -298,86 +301,12 @@ export default function Home() {
         {/* Additional Features */}
         <section className="w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-white py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900">
-                  Powerful tools for <br />
-                  consistent progress
-                </h2>
-
-                <div className="space-y-6">
-                  {/* Achievement System */}
-                  <div 
-                    className="group relative rounded-2xl bg-white/50 hover:bg-white/80 backdrop-blur-sm p-6 border border-white/20 hover:border-blue-100"
-                  >
-                    <div className="flex gap-4 items-start">
-                      {/* Icon container with simple background change */}
-                      <div className="p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10">
-                        <Target className="h-6 w-6 text-blue-600" />
-                      </div>
-
-                      {/* Text content */}
-                      <div className="space-y-2">
-                        <h3 className="font-semibold text-xl bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
-                          Achievement System
-                        </h3>
-                        <p className="text-zinc-500 leading-relaxed">
-                          Stay motivated with rewards and milestones for consistent effort
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Optional: Simple highlight effect instead of line */}
-                    <div className="absolute inset-0 rounded-2xl bg-blue-500/0 group-hover:bg-blue-500/[0.02]" />
-                  </div>
-
-                  {/* Smart Reminders */}
-                  <div 
-                    className="group relative rounded-2xl bg-white/50 hover:bg-white/80 backdrop-blur-sm p-6 border border-white/20 hover:border-blue-100"
-                  >
-                    <div className="flex gap-4 items-start">
-                      {/* Icon container with simple background change */}
-                      <div className="p-3 rounded-xl bg-blue-500/5 hover:bg-blue-500/10">
-                        <Bell className="h-6 w-6 text-indigo-600" />
-                      </div>
-
-                      {/* Text content */}
-                      <div className="space-y-2">
-                        <h3 className="font-semibold text-xl bg-gradient-to-br from-zinc-900 to-zinc-700 bg-clip-text text-transparent">
-                          Smart Reminders
-                        </h3>
-                        <p className="text-zinc-500 leading-relaxed">
-                          Never miss a duty with customizable notifications
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Optional: Simple highlight effect instead of line */}
-                    <div className="absolute inset-0 rounded-2xl bg-blue-500/0 group-hover:bg-blue-500/[0.02]" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Right side image with enhanced effects */}
-              <div className="relative lg:ml-12">
-                <div className="relative z-10">
-                  <Image
-                    src="/app-screenshot-2.png"
-                    alt="Instagrit Features"
-                    width={400}
-                    height={800}
-                    className="rounded-2xl shadow-2xl border border-black/5 transition-transform duration-300 hover:scale-[1.02]"
-                  />
-                  {/* Floating elements */}
-                  <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
-                  <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl" />
-                </div>
-                
-                {/* Enhanced background effects */}
-                <div className="absolute -z-10 inset-0 bg-gradient-to-r from-blue-500/5 via-indigo-500/5 to-purple-500/5 rounded-2xl blur-2xl transform rotate-6" />
-                <div className="absolute -z-10 inset-0 bg-gradient-to-r from-blue-500/5 via-indigo-500/5 to-purple-500/5 rounded-2xl blur-2xl transform -rotate-6" />
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 mb-16">
+              Powerful tools for <br />
+              consistent progress
+            </h2>
+            
+            <FeatureShowcase />
           </div>
         </section>
 
