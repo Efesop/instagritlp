@@ -128,7 +128,7 @@ export default function Home() {
               {/* Notification Pills - Matching app's native notification style */}
               {/* Top Right */}
               <div className="absolute right-[10%] top-[10%] z-30">
-                <div className="bg-sky-950/35 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
+              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
                   <CheckCircle className="h-5 w-5 text-green-400" strokeWidth={2} />
                   <span className="text-sm font-medium text-white">
                     7 Day Streak!
@@ -138,7 +138,7 @@ export default function Home() {
 
               {/* Top Left */}
               <div className="absolute left-[5%] top-[30%] z-30">
-                <div className="bg-sky-950/35 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float-delayed backdrop-blur-xl will-change-transform">
+              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
                   <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-pink-600" />
                   <span className="text-sm font-medium text-white">
                     Sarah completed 3 duties
@@ -148,7 +148,7 @@ export default function Home() {
 
               {/* Middle Right */}
               <div className="absolute right-[5%] top-[50%] z-30">
-                <div className="bg-sky-950/35 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
+              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
                   <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
                   <span className="text-sm font-medium text-white">
                     Mike is on fire! 🔥
@@ -158,7 +158,7 @@ export default function Home() {
 
               {/* Bottom Left */}
               <div className="absolute left-[10%] bottom-[35%] z-30">
-                <div className="bg-sky-950/35 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float-delayed backdrop-blur-xl will-change-transform">
+              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
                   <Target className="h-5 w-5 text-indigo-400" strokeWidth={2} />
                   <span className="text-sm font-medium text-white">
                     Goal Achieved
@@ -168,7 +168,7 @@ export default function Home() {
 
               {/* Bottom Right */}
               <div className="absolute right-[8%] bottom-[15%] z-30">
-                <div className="bg-sky-950/35 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
+                <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
                   <div className="flex -space-x-1.5">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-600" />
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600" />
