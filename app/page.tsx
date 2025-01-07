@@ -79,7 +79,7 @@ export default function Home() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-16">
-                Take control and transform your life—one duty at a time. Build lasting habits through accountability and tracking.
+                Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.
               </p>
 
               <div className="flex items-center gap-4 mb-16">
@@ -87,12 +87,17 @@ export default function Home() {
                 
                 <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/50 border border-zinc-100 backdrop-blur-sm">
                   <div className="flex -space-x-2">
-                    {[...Array(4)].map((_, i) => (
+                    {[
+                      { initial: "J", bg: "from-blue-400 to-blue-500" },
+                      { initial: "M", bg: "from-purple-400 to-purple-500" },
+                      { initial: "R", bg: "from-emerald-400 to-emerald-500" },
+                      { initial: "A", bg: "from-orange-400 to-orange-500" }
+                    ].map((avatar, i) => (
                       <div 
                         key={i} 
-                        className="w-8 h-8 rounded-full ring-2 ring-white bg-gradient-to-br from-blue-500/80 to-indigo-500/80 flex items-center justify-center text-[10px] font-medium text-white"
+                        className={`w-8 h-8 rounded-full bg-gradient-to-br ${avatar.bg} ring-2 ring-white flex items-center justify-center text-[12px] font-medium text-white`}
                       >
-                        {String.fromCharCode(65 + i)}
+                        {avatar.initial}
                       </div>
                     ))}
                   </div>
@@ -105,18 +110,21 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4">
                 {[
-                  { text: "Track Daily", icon: "📊" },
-                  { text: "Build Habits", icon: "⚡" },
-                  { text: "Stay Accountable", icon: "🤝" },
-                  { text: "See Progress", icon: "📈" }
+                  { text: "Share Tasks", icon: "🤝"},
+                  { text: "Track Progress", icon: "📊"},
+                  { text: "Build habits", icon: "🔥"},
+                  { text: "Real-time Updates", icon: "⚡"}
                 ].map((feature) => (
                   <div
                     key={feature.text}
-                    className="group px-4 py-2 rounded-full bg-white border border-zinc-100 shadow-sm transform-gpu transition-all hover:shadow-md hover:scale-105 will-change-transform backface-hidden"
+                    className="group relative px-4 py-3 rounded-full bg-white border border-zinc-100 shadow-sm transform-gpu transition-all hover:shadow-md hover:scale-105 will-change-transform backface-hidden"
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700">
                       {feature.icon}
-                      {feature.text}
+                      <div className="flex flex-col">
+                        <span>{feature.text}</span>
+                        <span className="text-xs text-zinc-500">{feature.description}</span>
+                      </div>
                     </span>
                   </div>
                 ))}
@@ -138,12 +146,15 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Top Left - Activity notification */}
+              {/* Top Left - Shared Task Activity */}
               <div className="absolute left-[5%] top-[30%] z-30">
                 <div className="group bg-white/80 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float-delayed backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
-                  <div className="h-5 w-5 rounded-full bg-gradient-to-br from-rose-500 to-orange-400 ring-[3px] ring-rose-500/20" />
+                  <div className="flex -space-x-2">
+                    <div className="h-5 w-5 rounded-full bg-gradient-to-br from-rose-500 to-orange-400 ring-[3px] ring-rose-500/20 flex items-center justify-center text-[10px] font-medium text-white">S</div>
+                    <div className="h-5 w-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-400 ring-[3px] ring-blue-500/20 flex items-center justify-center text-[10px] font-medium text-white">M</div>
+                  </div>
                   <span className="text-[15px] font-medium text-black drop-shadow-sm">
-                    Sarah completed 3 duties
+                    Completed "Workout" with Jane
                   </span>
                 </div>
               </div>
@@ -200,17 +211,17 @@ export default function Home() {
           {/* Updated Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-t border-zinc-100">
             {[
-              { label: "Active Users", value: "1,000+", trend: "+25% this month" },
+              { label: "Active Users", value: "50+", trend: "+25% this month" },
               { label: "Tasks Completed", value: "50,000+", trend: "+12% this week" },
               { label: "Avg. Streak", value: "12 Days", trend: "↑ 3 days" },
-              { label: "App Rating", value: "4.8/5", trend: "⭐ App Store" },
+              { label: "App Rating", value: "4.9/5", trend: "⭐ App Store" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center group transition-all hover:scale-105">
+              <div key={stat.label} className="text-center group">
                 <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   {stat.value}
                 </div>
                 <div className="text-sm text-zinc-500 font-medium">{stat.label}</div>
-                <div className="text-xs text-blue-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="text-xs text-blue-500 mt-1">
                   {stat.trend}
                 </div>
               </div>
