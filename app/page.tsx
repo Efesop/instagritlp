@@ -1,10 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, CheckCircle, BarChart, Target, Star, Calendar, Bell } from "lucide-react"
+import { ArrowRight, CheckCircle, Target, Star, Bell } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 import { Card } from "@/components/ui/card"
-import { motion } from "framer-motion"
+//import { motion } from "framer-motion"
 import { TrackingIcon, StreakIcon, AnalyticsIcon } from '@/components/features/FeatureIcons';
 
 interface TestimonialProps {
