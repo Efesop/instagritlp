@@ -125,55 +125,59 @@ export default function Home() {
 
             {/* Right side with iPhone remains the same */}
             <div className="flex-1 relative flex justify-center">
-              {/* Notification Pills - Matching app's native notification style */}
-              {/* Top Right */}
+              {/* Notification Pills - Modern frosted glass effect */}
+              {/* Top Right - Success notification */}
               <div className="absolute right-[10%] top-[10%] z-30">
-              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
-                  <CheckCircle className="h-5 w-5 text-green-400" strokeWidth={2} />
-                  <span className="text-sm font-medium text-white">
+                <div className="group bg-white/60 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="p-1.5 rounded-full bg-green-500/20">
+                    <CheckCircle className="h-4 w-4 text-green-400" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[15px] font-medium text-black drop-shadow-sm">
                     7 Day Streak!
                   </span>
                 </div>
               </div>
 
-              {/* Top Left */}
+              {/* Top Left - Activity notification */}
               <div className="absolute left-[5%] top-[30%] z-30">
-              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-pink-600" />
-                  <span className="text-sm font-medium text-white">
+                <div className="group bg-white/60 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float-delayed backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="h-5 w-5 rounded-full bg-gradient-to-br from-rose-500 to-orange-400 ring-[3px] ring-rose-500/20" />
+                  <span className="text-[15px] font-medium text-black drop-shadow-sm">
                     Sarah completed 3 duties
                   </span>
                 </div>
               </div>
 
-              {/* Middle Right */}
+              {/* Middle Right - Status notification */}
               <div className="absolute right-[5%] top-[50%] z-30">
-              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
-                  <span className="text-sm font-medium text-white">
+                <div className="group bg-white/60 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="h-5 w-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 ring-[3px] ring-blue-500/20" />
+                  <span className="text-[15px] font-medium text-black drop-shadow-sm">
                     Mike is on fire! 🔥
                   </span>
                 </div>
               </div>
 
-              {/* Bottom Left */}
+              {/* Bottom Left - Achievement notification */}
               <div className="absolute left-[10%] bottom-[35%] z-30">
-              <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
-                  <Target className="h-5 w-5 text-indigo-400" strokeWidth={2} />
-                  <span className="text-sm font-medium text-white">
+                <div className="group bg-white/60 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float-delayed backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="p-1.5 rounded-full bg-blue-500/20">
+                    <Target className="h-4 w-4 text-blue-400" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[15px] font-medium text-black drop-shadow-sm">
                     Goal Achieved
                   </span>
                 </div>
               </div>
 
-              {/* Bottom Right */}
+              {/* Bottom Right - Social notification */}
               <div className="absolute right-[8%] bottom-[15%] z-30">
-                <div className="bg-blue-950/40 rounded-2xl py-3 px-5 shadow-lg flex items-center gap-3 animate-float backdrop-blur-xl will-change-transform">
-                  <div className="flex -space-x-1.5">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-600" />
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600" />
+                <div className="group bg-white/60 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="flex -space-x-1">
+                    <div className="h-5 w-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 ring-[3px] ring-emerald-500/20" />
+                    <div className="h-5 w-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-400 ring-[3px] ring-violet-500/20" />
                   </div>
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-[15px] font-medium text-black drop-shadow-sm">
                     2 friends joined!
                   </span>
                 </div>
