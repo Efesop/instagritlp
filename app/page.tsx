@@ -27,6 +27,29 @@ function Testimonial({ quote, author, rating }: TestimonialProps) {
   )
 }
 
+const AppStoreButton = () => {
+  const basePath = process.env.NODE_ENV === 'production' ? '/instagritlp' : ''
+  const imagePath = `${basePath}/iosdownload.svg`
+  
+  return (
+    <Link 
+      href="https://apps.apple.com/gb/app/instagrit/id6737732671"
+      className="relative group transform-gpu"
+    >
+      <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity will-change-transform backface-hidden" />
+      <Image
+        src={imagePath}
+        alt="Download on the App Store"
+        width={156}
+        height={52}
+        priority
+        unoptimized
+        className="h-[52px] w-auto relative transform-gpu transition-transform group-hover:scale-105 will-change-transform backface-hidden"
+      />
+    </Link>
+  )
+}
+
 export default function Home() {
   return (
     <>
@@ -60,19 +83,7 @@ export default function Home() {
               </p>
 
               <div className="flex items-center gap-4 mb-16">
-                <Link 
-                  href="https://apps.apple.com/gb/app/instagrit/id6737732671"
-                  className="relative group transform-gpu"
-                >
-                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity will-change-transform backface-hidden" />
-                  <Image
-                    src="/app-store-badge.svg"
-                    alt="Download on the App Store"
-                    width={156}
-                    height={52}
-                    className="h-[52px] w-auto relative transform-gpu transition-transform group-hover:scale-105 will-change-transform backface-hidden"
-                  />
-                </Link>
+                <AppStoreButton />
                 
                 <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/50 border border-zinc-100 backdrop-blur-sm">
                   <div className="flex -space-x-2">
