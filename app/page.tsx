@@ -128,9 +128,11 @@ export default function Home() {
               {/* Notification Pills */}
               {/* Top Right */}
               <div className="absolute right-[10%] top-[10%] z-30">
-                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
-                  <CheckCircle className="h-5 w-5 text-green-500" strokeWidth={2.5} />
-                  <span className="text-sm font-medium bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+                <div className="bg-[#1C1C1E]/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/10 backdrop-blur-sm">
+                  <div className="w-5 h-5 rounded-full bg-[#34C759] flex items-center justify-center">
+                    <CheckCircle className="h-4 w-4 text-[#1C1C1E]" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-sm font-medium text-white">
                     7 Day Streak!
                   </span>
                 </div>
@@ -138,25 +140,27 @@ export default function Home() {
 
               {/* Top Left */}
               <div className="absolute left-[5%] top-[30%] z-30">
-                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-orange-500/5 flex items-center gap-3 animate-float-delayed border border-white/20 will-change-transform">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-pink-600 ring-4 ring-orange-500/10" />
-                  <span className="text-sm font-medium text-zinc-800">Sarah completed 3 duties</span>
+                <div className="bg-[#1C1C1E]/80 rounded-2xl py-3 px-5 shadow-lg shadow-orange-500/5 flex items-center gap-3 animate-float-delayed border border-white/10 backdrop-blur-sm">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-pink-600" />
+                  <span className="text-sm font-medium text-white">Sarah completed 3 duties</span>
                 </div>
               </div>
 
               {/* Middle Right */}
               <div className="absolute right-[5%] top-[50%] z-30">
-                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 ring-4 ring-blue-500/10" />
-                  <span className="text-sm font-medium text-zinc-800">Mike is on fire! 🔥</span>
+                <div className="bg-[#1C1C1E]/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float border border-white/10 backdrop-blur-sm">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
+                  <span className="text-sm font-medium text-white">Mike is on fire! 🔥</span>
                 </div>
               </div>
 
               {/* Bottom Left */}
               <div className="absolute left-[10%] bottom-[35%] z-30">
-                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float-delayed border border-white/20 will-change-transform">
-                  <Target className="h-5 w-5 text-blue-500" strokeWidth={2.5} />
-                  <span className="text-sm font-medium bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                <div className="bg-[#1C1C1E]/80 rounded-2xl py-3 px-5 shadow-lg shadow-blue-500/5 flex items-center gap-3 animate-float-delayed border border-white/10 backdrop-blur-sm">
+                  <div className="w-5 h-5 rounded-full bg-[#0A84FF] flex items-center justify-center">
+                    <Target className="h-4 w-4 text-[#1C1C1E]" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-sm font-medium text-white">
                     Goal Achieved
                   </span>
                 </div>
@@ -164,12 +168,12 @@ export default function Home() {
 
               {/* Bottom Right */}
               <div className="absolute right-[8%] bottom-[15%] z-30">
-                <div className="bg-white/80 rounded-2xl py-3 px-5 shadow-lg shadow-purple-500/5 flex items-center gap-3 animate-float border border-white/20 will-change-transform">
+                <div className="bg-[#1C1C1E]/80 rounded-2xl py-3 px-5 shadow-lg shadow-purple-500/5 flex items-center gap-3 animate-float border border-white/10 backdrop-blur-sm">
                   <div className="flex -space-x-1.5">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 ring-4 ring-green-500/10" />
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 ring-4 ring-purple-500/10" />
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-400 to-emerald-600" />
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600" />
                   </div>
-                  <span className="text-sm font-medium text-zinc-800">2 friends joined!</span>
+                  <span className="text-sm font-medium text-white">2 friends joined!</span>
                 </div>
               </div>
 
