@@ -14,7 +14,7 @@ export function SiteHeader() {
         {/* Logo */}
         <Link 
           href="/" 
-          className="flex items-center space-x-3 font-bold text-xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+          className="flex items-center space-x-3 font-bold text-xl text-black bg-clip-text text-transparent"
           aria-label="Instagrit Home"
         >
           <Image
