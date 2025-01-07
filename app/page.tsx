@@ -34,32 +34,32 @@ export default function Home() {
       <div className="flex flex-col min-h-screen overflow-hidden">
         {/* Hero Section */}
         <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12 py-16 md:py-24">
-            <div className="flex-1 space-y-8 text-center lg:text-left">
-              {/* Modern badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-8">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-sm font-medium text-blue-700">Now available on iOS</span>
+          <div className="flex flex-row items-center gap-12 py-16 md:py-24">
+            <div className="flex-1">
+              <div className="inline-flex items-center bg-[#EEF3FF] rounded-full px-4 py-2 mb-14">
+                <div className="relative flex h-2 w-2 mr-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4066E8] opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4066E8]"></span>
+                </div>
+                <span className="text-[#4066E8] text-sm font-medium">Now available on iOS</span>
               </div>
-
-              <div className="space-y-4">
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
-                  Progress Through{" "}
-                  <span className="relative">
-                    <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                      Discipline
-                    </span>
-                    {/* Decorative elements */}
-                    <div className="absolute -z-10 -inset-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 blur-xl opacity-50" />
+              
+              <h1 className="text-6xl font-bold tracking-tight mb-8">
+                Progress Through{" "}
+                <span className="relative">
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    Discipline
                   </span>
-                </h1>
-                <p className="mx-auto lg:mx-0 max-w-[600px] text-zinc-500 md:text-xl">
-                  Take control and transform your life—one duty at a time. Build lasting habits through accountability and tracking.
-                </p>
-              </div>
+                  {/* Decorative elements */}
+                  <div className="absolute -z-10 -inset-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 blur-xl opacity-50" />
+                </span>
+              </h1>
+              
+              <p className="text-xl text-muted-foreground mb-16">
+                Take control and transform your life—one duty at a time. Build lasting habits through accountability and tracking.
+              </p>
 
-              {/* Updated CTA section */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+              <div className="flex items-center gap-4 mb-16">
                 <Link 
                   href="https://apps.apple.com/gb/app/instagrit/id6737732671"
                   className="relative group transform-gpu"
@@ -74,7 +74,6 @@ export default function Home() {
                   />
                 </Link>
                 
-                {/* Modern users counter */}
                 <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/50 border border-zinc-100 backdrop-blur-sm">
                   <div className="flex -space-x-2">
                     {[...Array(4)].map((_, i) => (
@@ -93,8 +92,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Updated Feature Pills */}
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              <div className="flex flex-wrap gap-4">
                 {[
                   { text: "Track Daily", icon: "📊" },
                   { text: "Build Habits", icon: "⚡" },
@@ -439,3 +437,4 @@ export default function Home() {
     </>
   )
 }
+
