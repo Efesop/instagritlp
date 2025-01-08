@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, CheckCircle, Target, Star, Bell, Check, Users2 } from "lucide-react"
+import { ArrowRight, CheckCircle, Target, Star } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 import { Card } from "@/components/ui/card"
@@ -122,10 +122,10 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4">
                 {[
-                  { text: "Share Tasks", icon: "🤝"},
-                  { text: "Track Progress", icon: "📊"},
-                  { text: "Build habits", icon: "🔥"},
-                  { text: "Real-time Updates", icon: "⚡"}
+                  { text: "Share Tasks", icon: "🤝" },
+                  { text: "Track Progress", icon: "📊" },
+                  { text: "Build habits", icon: "🔥" },
+                  { text: "Real-time Updates", icon: "⚡" }
                 ].map((feature) => (
                   <div
                     key={feature.text}
@@ -135,7 +135,6 @@ export default function Home() {
                       {feature.icon}
                       <div className="flex flex-col">
                         <span>{feature.text}</span>
-                        <span className="text-xs text-zinc-500">{feature.description}</span>
                       </div>
                     </span>
                   </div>

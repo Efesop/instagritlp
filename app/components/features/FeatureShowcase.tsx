@@ -77,7 +77,7 @@ export function FeatureShowcase() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-zinc-900">Today's Shared Tasks</p>
+                  <p className="text-sm font-medium text-zinc-900">Today&apos;s Shared Tasks</p>
                   <p className="text-xs text-zinc-500">You & Tom are working on this together</p>
                 </div>
               </div>
