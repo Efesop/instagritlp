@@ -156,3 +156,135 @@ body {
     opacity: 0.3;
   }
 }
+
+@keyframes gradient-flow {
+  0% {
+    color: theme('colors.blue.600');
+  }
+  50% {
+    color: theme('colors.indigo.500');
+  }
+  100% {
+    color: theme('colors.blue.600');
+  }
+}
+
+.animate-gradient-flow {
+  animation: gradient-flow 3s infinite;
+}
+
+@keyframes share {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes share-clone {
+  0% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+  25% { 
+    transform: translateY(4px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  51% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(-4px);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-share {
+  animation: share 3s ease-in-out infinite;
+}
+
+.animate-share-clone {
+  animation: share-clone 3s ease-in-out infinite;
+}
+
+@keyframes slide-apart {
+  0%, 100% { 
+    gap: 0;
+    transform: translateX(0);
+  }
+  50% { 
+    gap: 1.5rem;
+    transform: translateX(-12px);
+  }
+}
+
+.animate-slide-apart {
+  display: inline-flex;
+  animation: slide-apart 3s ease-in-out infinite;
+}
+
+@keyframes split-words {
+  0%, 100% { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+  45%, 55% { 
+    transform: translateX(-4rem);
+    opacity: 0;
+  }
+}
+
+@keyframes split-words-clone {
+  0%, 100% { 
+    transform: translateX(0);
+    opacity: 0;
+  }
+  45%, 55% { 
+    transform: translateX(4rem);
+    opacity: 1;
+  }
+}
+
+.animate-split-words {
+  animation: split-words 4s ease-in-out infinite;
+}
+
+.animate-split-words-clone {
+  animation: split-words-clone 4s ease-in-out infinite;
+}
+
+@keyframes word-split {
+  0%, 100% { 
+    gap: 0;
+    transform: translateX(0);
+  }
+  40%, 60% { 
+    gap: 1rem;
+    transform: translateX(-4px);
+  }
+}
+
+.animate-word-split {
+  display: inline-flex;
+  animation: word-split 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes letter-bounce {
+  0%, 100% { 
+    transform: translateY(0);
+  }
+  50% { 
+    transform: translateY(-8px);
+  }
+}
+
+.animate-letter-bounce {
+  display: inline-block;
+  animation: letter-bounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

@@ -70,12 +70,21 @@ export default function Home() {
               
               <h1 className="text-6xl font-bold tracking-tight mb-8">
                 Progress Through{" "}
-                <span className="relative">
-                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    Shared Discipline
+                <span className="inline-flex items-baseline">
+                  <span className="relative inline-flex">
+                    {'Shared'.split('').map((letter, i) => (
+                      <span 
+                        key={i}
+                        className="text-blue-600 animate-letter-bounce"
+                        style={{ 
+                          animationDelay: `${i * 100}ms`,
+                        }}
+                      >
+                        {letter}
+                      </span>
+                    ))}
                   </span>
-                  {/* Decorative elements */}
-                  <div className="absolute -z-10 -inset-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 blur-xl opacity-50" />
+                  <span className="text-zinc-900 ml-2">Discipline</span>
                 </span>
               </h1>
               
@@ -250,19 +259,22 @@ export default function Home() {
                   icon: <TrackingIcon className="text-blue-600" />,
                   title: "Smart Duty Tracking",
                   description: "Set daily duties, track progress, and never lose sight of your goals",
-                  hoverGradient: "from-blue-500/10 to-blue-600/10"
+                  hoverGradient: "from-blue-500/10 to-blue-600/10",
+                  underlineGradient: "from-blue-500/50 to-blue-600/50"
                 },
                 {
                   icon: <StreakIcon className="text-orange-500" />,
                   title: "Habit Streaks",
                   description: "Build momentum with visual streak tracking and daily completion stats",
-                  hoverGradient: "from-orange-500/10 to-orange-600/10"
+                  hoverGradient: "from-orange-500/10 to-orange-600/10",
+                  underlineGradient: "from-orange-500/50 to-orange-600/50"
                 },
                 {
                   icon: <AnalyticsIcon className="text-green-500" />,
                   title: "Progress Analytics",
                   description: "Get clear, intuitive insights into your progress with easy-to-read visuals",
-                  hoverGradient: "from-green-500/10 to-green-600/10"
+                  hoverGradient: "from-green-500/10 to-green-600/10",
+                  underlineGradient: "from-green-500/50 to-green-600/50"
                 }
               ].map((feature) => (
                 <div 
@@ -291,7 +303,7 @@ export default function Home() {
                   </div>
 
                   {/* Bottom line - Separate transform */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-[width] duration-75 ease-out bg-gradient-to-r from-blue-500/50 to-indigo-500/50 transform-gpu" />
+                  <div className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-[width] duration-75 ease-out bg-gradient-to-r ${feature.underlineGradient} transform-gpu`} />
                 </div>
               ))}
             </div>
