@@ -93,7 +93,7 @@ export function PricingCard({
             : 'bg-zinc-50 text-zinc-900 hover:bg-zinc-100'
           }`}
       >
-        {title === "Free" ? "Download Now" : "Upgrade Now"}
+        {title === "Free" ? "Download Now" : "Get it Now"}
       </Link>
     </div>
   )
