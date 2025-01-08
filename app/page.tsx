@@ -409,7 +409,7 @@ export default function Home() {
               <PricingCard
                 title="Lifetime"
                 price="£39.99"
-                isLifetime={true}
+                //isLifetime={true}
                 features={[
                   { text: "Create tasks/duties", included: true },
                   { text: "Task sharing with friends", included: true },

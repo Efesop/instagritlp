@@ -26,7 +26,7 @@ export function PricingCard({
   popular, 
   appStoreUrl,
   yearlyPrice,
-  isLifetime
+  //isLifetime
 }: PricingCardProps) {
   const [currentPrice, setCurrentPrice] = useState(price)
   const [currentPeriod, setCurrentPeriod] = useState(period)
