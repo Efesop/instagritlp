@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, BarChart3 } from "lucide-react"
+import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, BarChart3, Trophy, Star, Medal, Crown } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, ResponsiveContainer } from "recharts"
 
 export function FeatureShowcase() {
@@ -9,6 +9,8 @@ export function FeatureShowcase() {
   const [demoState, setDemoState] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
   const [isChartVisible, setIsChartVisible] = useState(false)
+  const [achievementDemo, setAchievementDemo] = useState(0)
+  const [showTrophy, setShowTrophy] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
@@ -17,8 +19,8 @@ export function FeatureShowcase() {
   useEffect(() => {
     if (activeFeature === 'shared-tasks') {
       const interval = setInterval(() => {
-        setDemoState((prev) => (prev + 1) % 8) // Extended to 8 states for more detail
-      }, 2500)
+        setDemoState((prev) => (prev + 1) % 8)
+      }, 1500)
       return () => clearInterval(interval)
     } else {
       setDemoState(0)
@@ -35,6 +37,28 @@ export function FeatureShowcase() {
       setIsChartVisible(false)
     }
   }, [activeFeature, isMounted])
+
+  useEffect(() => {
+    if (activeFeature === 'achievement') {
+      const interval = setInterval(() => {
+        setAchievementDemo((prev) => {
+          if (prev === 5) {
+            setShowTrophy(true)
+            setTimeout(() => {
+              setShowTrophy(false)
+              setAchievementDemo(0)
+            }, 2000)
+            return prev
+          }
+          return (prev + 1) % 6
+        })
+      }, 1000)
+      return () => clearInterval(interval)
+    } else {
+      setAchievementDemo(0)
+      setShowTrophy(false)
+    }
+  }, [activeFeature])
 
   const renderTaskDemo = () => {
     const notifications = [
@@ -208,6 +232,109 @@ export function FeatureShowcase() {
     )
   }
 
+  const renderAchievementDemo = () => {
+    const achievements = [
+      {
+        id: 1,
+        title: "Sharing is caring",
+        description: "Complete a shared task",
+        icon: "🌅",
+        level: achievementDemo >= 1 ? "Achieved" : "In progress",
+        progress: achievementDemo >= 1 ? 21 : 9,
+        total: 21,
+        color: "from-amber-500 to-orange-500"
+      },
+      {
+        id: 2,
+        title: "Consistency King",
+        description: "Complete tasks for 30 days straight",
+        icon: "👑",
+        level: achievementDemo >= 3 ? "Achieved" : "In progress",
+        progress: achievementDemo >= 3 ? 30 : 15,
+        total: 30,
+        color: "from-blue-500 to-indigo-500"
+      },
+      {
+        id: 3,
+        title: "Goal Crusher",
+        description: "Complete all weekly goals",
+        icon: "⭐️",
+        level: achievementDemo >= 5 ? "Achieved" : "In progress",
+        progress: achievementDemo >= 5 ? 12 : 8,
+        total: 12,
+        color: "from-emerald-500 to-teal-500"
+      }
+    ]
+
+    return (
+      <div className="p-6 relative">
+        <div className="space-y-4">
+          {achievements.map((achievement) => (
+            <div 
+              key={achievement.id}
+              className="group relative overflow-hidden rounded-xl bg-white hover:bg-zinc-50 transition-all duration-300"
+            >
+              <div className="p-4">
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative h-12 w-12 rounded-xl flex items-center justify-center bg-gradient-to-br animate-achievement-pulse">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-10 rounded-xl`} />
+                    <span className="text-2xl">{achievement.icon}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-zinc-900">{achievement.title}</h3>
+                    <p className="text-sm text-zinc-500">{achievement.description}</p>
+                  </div>
+                  <div className={`px-3 py-1 rounded-full text-xs font-medium
+                    ${achievement.progress === achievement.total 
+                      ? 'animate-achievement-complete bg-green-100 text-green-700' 
+                      : 'bg-zinc-100 text-zinc-700'}`}
+                  >
+                    {achievement.level}
+                  </div>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="relative mt-2">
+                  <div className="h-2 w-full bg-zinc-100 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full bg-gradient-to-r ${achievement.color}
+                        transition-all duration-1000 ease-out relative`}
+                      style={{ 
+                        width: `${(achievement.progress / achievement.total) * 100}%`,
+                        transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 animate-shimmer" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Trophy Celebration Overlay */}
+        {showTrophy && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-lg">
+            <div className="relative">
+              <div className="absolute inset-0 bg-yellow-500/20 blur-xl rounded-full animate-pulse" />
+              <div className="relative flex flex-col items-center gap-2">
+                <Trophy 
+                  className="w-16 h-16 text-yellow-500 animate-trophy-celebration" 
+                  strokeWidth={1.5} 
+                />
+                <span className="text-lg font-medium text-yellow-600 animate-fade-in">
+                  All Achievements Unlocked!
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   const chartData = [
     { month: "Jan", value: 85 },
     { month: "Feb", value: 92 },
@@ -294,22 +421,7 @@ export function FeatureShowcase() {
 
           {/* Achievement Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'achievement' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { title: "7 Day Streak", progress: "7/7", icon: "🔥" },
-                  { title: "Early Bird", progress: "5/10", icon: "🌅" },
-                  { title: "Team Player", progress: "12/15", icon: "🤝" },
-                  { title: "Goal Setter", progress: "3/5", icon: "🎯" }
-                ].map((achievement) => (
-                  <div key={achievement.title} className="p-4 rounded-xl bg-zinc-50 hover:bg-zinc-100 transition-colors">
-                    <div className="text-2xl mb-2">{achievement.icon}</div>
-                    <p className="text-sm font-medium text-zinc-900">{achievement.title}</p>
-                    <p className="text-xs text-zinc-500">{achievement.progress}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {renderAchievementDemo()}
           </div>
 
           {/* Reminders Demo */}
@@ -384,11 +496,12 @@ export function FeatureShowcase() {
                           strokeWidth={2}
                           fill="url(#colorValue)"
                           isAnimationActive={true}
-                          animationDuration={0}
+                          animationBegin={0}
+                          animationDuration={1500}
                           strokeDasharray="2000"
                           strokeDashoffset={isChartVisible ? 0 : 2000}
                           style={{
-                            transition: 'stroke-dashoffset 2s ease-out'
+                            transition: 'stroke-dashoffset 1s ease-out'
                           }}
                           dot={{
                             r: 4,
@@ -397,7 +510,7 @@ export function FeatureShowcase() {
                             strokeWidth: 2,
                             opacity: isChartVisible ? 1 : 0,
                             style: {
-                              transition: 'opacity 0.3s ease-out'
+                              transition: 'opacity 0.2s ease-out'
                             }
                           }}
                           activeDot={{
