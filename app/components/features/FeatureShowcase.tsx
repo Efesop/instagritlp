@@ -64,11 +64,22 @@ export function FeatureShowcase() {
 
   useEffect(() => {
     if (activeFeature === 'reminders') {
+      // Show first notification quickly
+      const initialTimer = setTimeout(() => {
+        setReminderDemo(0)
+        setActiveNotification(0)
+      }, 300) // Show first notification after 300ms
+
+      // Start the regular interval after a delay
       const interval = setInterval(() => {
         setReminderDemo((prev) => (prev + 1) % 4)
         setActiveNotification((prev) => (prev === null ? 0 : (prev + 1) % 4))
       }, 2000)
-      return () => clearInterval(interval)
+
+      return () => {
+        clearTimeout(initialTimer)
+        clearInterval(interval)
+      }
     } else {
       setReminderDemo(0)
       setActiveNotification(null)
