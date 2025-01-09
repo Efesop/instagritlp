@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, BarChart3, Trophy, Star, Medal, Crown } from "lucide-react"
+import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, BarChart3, Trophy, } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, ResponsiveContainer } from "recharts"
 
 export function FeatureShowcase() {
