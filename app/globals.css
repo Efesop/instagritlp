@@ -703,3 +703,64 @@ body {
 .animate-trophy-celebration {
   animation: trophy-celebration 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+@keyframes reminder-pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes reminder-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.animate-reminder-pop {
+  animation: reminder-pop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-reminder-bounce {
+  animation: reminder-bounce 2s ease-in-out infinite;
+}
+
+@keyframes reminder-ring {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20%, 60% {
+    transform: rotate(-12deg);
+  }
+  40%, 80% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes reminder-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-reminder-ring {
+  animation: reminder-ring 0.8s cubic-bezier(0.36, 0, 0.66, -0.56) infinite;
+  transform-origin: 50% 0;
+}
+
+.animate-reminder-pulse {
+  animation: reminder-pulse 0.8s ease-in-out infinite;
+}

@@ -11,6 +11,8 @@ export function FeatureShowcase() {
   const [isChartVisible, setIsChartVisible] = useState(false)
   const [achievementDemo, setAchievementDemo] = useState(0)
   const [showTrophy, setShowTrophy] = useState(false)
+  const [reminderDemo, setReminderDemo] = useState(0)
+  const [activeNotification, setActiveNotification] = useState<number | null>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -57,6 +59,19 @@ export function FeatureShowcase() {
     } else {
       setAchievementDemo(0)
       setShowTrophy(false)
+    }
+  }, [activeFeature])
+
+  useEffect(() => {
+    if (activeFeature === 'reminders') {
+      const interval = setInterval(() => {
+        setReminderDemo((prev) => (prev + 1) % 4)
+        setActiveNotification((prev) => (prev === null ? 0 : (prev + 1) % 4))
+      }, 2000)
+      return () => clearInterval(interval)
+    } else {
+      setReminderDemo(0)
+      setActiveNotification(null)
     }
   }, [activeFeature])
 
@@ -429,10 +444,11 @@ export function FeatureShowcase() {
             <div className="p-6">
               {/* Categories */}
               <div className="flex items-center gap-2 mb-6">
-                {['♾️ Daily Reminders', '❤️ Personalised messages', '🤝 Shared invites'].map((type) => (
+                {['♾️ Daily Reminders', '❤️ Personalised messages', '🤝 Shared invites'].map((type, index) => (
                   <div
                     key={type}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600 animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {type}
                   </div>
@@ -441,9 +457,9 @@ export function FeatureShowcase() {
 
               {/* Daily Reminders Section */}
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 animate-slide-in-right">
                   <div className="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
-                    <Bell className="h-5 w-5" />
+                    <Bell className={`h-5 w-5 ${activeNotification !== null ? 'animate-reminder-ring' : ''}`} />
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-zinc-900">Daily Reminders</h3>
@@ -457,31 +473,36 @@ export function FeatureShowcase() {
                     { title: "Tom has invited you to go to the gym", time: "5:00 PM", type: "Shared reminder", shared: true },
                     { title: "Weekly Planning with Sarah", time: "Every Friday", type: "Shared reminder", shared: true },
                     { title: "Evening Reflection", time: "8:00 PM", type: "Push notification" },
-                    //{ title: "Evening Review", time: "8:00 PM", type: "Calendar alert" },
-                  ].map((reminder) => (
-                    <div key={reminder.title} className="flex items-center justify-between p-3 rounded-lg bg-white hover:bg-zinc-50">
+                  ].map((reminder, index) => (
+                    <div 
+                      key={reminder.title} 
+                      className={`flex items-center justify-between p-3 rounded-lg transition-all duration-300
+                        ${activeNotification === index 
+                          ? 'bg-blue-50 ring-1 ring-blue-500/20 scale-[1.02]' 
+                          : 'bg-white hover:bg-zinc-50'} 
+                        ${index === 0 ? 'animate-reminder-pop' : ''}`}
+                      style={{ animationDelay: `${index * 150}ms` }}
+                    >
                       <div className="flex items-center gap-3">
                         {reminder.shared ? (
-                          <Users2 className="h-4 w-4 text-blue-500" />
+                          <Users2 className={`h-4 w-4 text-blue-500 ${activeNotification === index ? 'animate-reminder-bounce' : ''}`} />
                         ) : (
-                          <Clock className="h-4 w-4 text-zinc-400" />
+                          <Clock className={`h-4 w-4 ${activeNotification === index ? 'text-blue-500 animate-reminder-pulse' : 'text-zinc-400'}`} />
                         )}
                         <span className="text-sm text-zinc-900">{reminder.title}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-zinc-500">{reminder.time}</span>
-                        <div className={`px-2 py-0.5 rounded-md text-xs
-                          ${reminder.shared 
-                            ? 'bg-blue-50 text-blue-600' 
-                            : 'bg-zinc-100 text-zinc-600'}`}>
+                        <div className={`px-2 py-0.5 rounded-md text-xs transition-all duration-300
+                          ${activeNotification === index 
+                            ? (reminder.shared ? 'bg-blue-100 text-blue-700' : 'bg-zinc-100 text-zinc-700') 
+                            : (reminder.shared ? 'bg-blue-50 text-blue-600' : 'bg-zinc-100 text-zinc-600')}`}>
                           {reminder.type}
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-
-                {/* Smart Features */}
               </div>
             </div>
           </div>
