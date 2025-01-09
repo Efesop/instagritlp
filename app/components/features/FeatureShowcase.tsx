@@ -1,11 +1,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, X, MessageCircle, BarChart3 } from "lucide-react"
+import { Users2, Target, Bell, Check, Plus, Share2, Clock, CheckCircle2, BarChart3 } from "lucide-react"
+import { Area, AreaChart, CartesianGrid, XAxis, ResponsiveContainer } from "recharts"
 
 export function FeatureShowcase() {
   const [activeFeature, setActiveFeature] = useState('shared-tasks')
   const [demoState, setDemoState] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+  const [isChartVisible, setIsChartVisible] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     if (activeFeature === 'shared-tasks') {
@@ -17,6 +24,17 @@ export function FeatureShowcase() {
       setDemoState(0)
     }
   }, [activeFeature])
+
+  useEffect(() => {
+    if (activeFeature === 'analytics' && isMounted) {
+      const timer = setTimeout(() => {
+        setIsChartVisible(true)
+      }, 300)
+      return () => clearTimeout(timer)
+    } else {
+      setIsChartVisible(false)
+    }
+  }, [activeFeature, isMounted])
 
   const renderTaskDemo = () => {
     const notifications = [
@@ -190,6 +208,21 @@ export function FeatureShowcase() {
     )
   }
 
+  const chartData = [
+    { month: "Jan", value: 85 },
+    { month: "Feb", value: 92 },
+    { month: "Mar", value: 78 },
+    { month: "Apr", value: 55 },
+    { month: "May", value: 82 },
+    { month: "Jun", value: 88 },
+    { month: "Jul", value: 95 },
+    { month: "Aug", value: 100 },
+    { month: "Sep", value: 90 },
+    { month: "Oct", value: 80 },
+    { month: "Nov", value: 90 },
+    { month: "Dec", value: 80 }
+  ]
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
       {/* Clean Menu Cards */}
@@ -305,46 +338,82 @@ export function FeatureShowcase() {
           {/* Analytics Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'analytics' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
             <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h3 className="text-sm font-medium text-zinc-900">Weekly Progress</h3>
-                  <p className="text-xs text-zinc-500">Last 7 days</p>
+              {/* Monthly Progress Chart */}
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-sm font-medium text-zinc-900">Monthly Progress</h3>
+                    <p className="text-xs text-zinc-500">Last 6 months</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-blue-500" />
-                  <span className="text-xs text-zinc-500">Tasks</span>
-                  <div className="h-2 w-2 rounded-full bg-indigo-500" />
-                  <span className="text-xs text-zinc-500">Completion</span>
-                </div>
-              </div>
 
-              <div className="h-[200px] flex items-end gap-4">
-                {[65, 84, 95, 75, 89, 70, 92].map((value, i) => (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                    <div className="w-full relative h-full">
-                      <div 
-                        className="absolute bottom-0 left-0 w-full bg-blue-100 rounded-sm animate-chart-grow"
-                        style={{ 
-                          height: `${value}%`,
-                          animationDelay: `${i * 100}ms`
-                        }}
+                <div className="h-[200px] w-full">
+                  {isMounted && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart
+                        data={chartData}
+                        margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
                       >
-                        <div 
-                          className="absolute bottom-0 left-0 w-full bg-blue-500 rounded-sm animate-chart-fill"
-                          style={{ 
-                            height: `${value * 0.8}%`,
-                            animationDelay: `${(i * 100) + 500}ms`
+                        <defs>
+                          <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.25}/>
+                            <stop offset="100%" stopColor="#3B82F6" stopOpacity={0.05}/>
+                          </linearGradient>
+                          <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="#3B82F6"/>
+                            <stop offset="100%" stopColor="#60A5FA"/>
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid 
+                          vertical={false}
+                          stroke="#E5E7EB"
+                          strokeDasharray="0"
+                        />
+                        <XAxis 
+                          dataKey="month" 
+                          axisLine={false}
+                          tickLine={false}
+                          tick={{ fontSize: 12, fill: '#6B7280' }}
+                          padding={{ left: 20, right: 20 }}
+                          interval={0}
+                        />
+                        <Area
+                          type="monotoneX"
+                          dataKey="value"
+                          stroke="url(#lineGradient)"
+                          strokeWidth={2}
+                          fill="url(#colorValue)"
+                          isAnimationActive={true}
+                          animationDuration={0}
+                          strokeDasharray="2000"
+                          strokeDashoffset={isChartVisible ? 0 : 2000}
+                          style={{
+                            transition: 'stroke-dashoffset 2s ease-out'
+                          }}
+                          dot={{
+                            r: 4,
+                            fill: '#3B82F6',
+                            stroke: 'white',
+                            strokeWidth: 2,
+                            opacity: isChartVisible ? 1 : 0,
+                            style: {
+                              transition: 'opacity 0.3s ease-out'
+                            }
+                          }}
+                          activeDot={{
+                            r: 5,
+                            fill: '#3B82F6',
+                            stroke: 'white',
+                            strokeWidth: 2
                           }}
                         />
-                      </div>
-                    </div>
-                    <span className="text-xs text-zinc-500">
-                      {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
-                    </span>
-                  </div>
-                ))}
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  )}
+                </div>
               </div>
 
+              {/* Existing stats cards */}
               <div className="mt-8 space-y-3">
                 <div className="p-4 rounded-xl bg-zinc-50">
                   <div className="flex items-center justify-between mb-2">
