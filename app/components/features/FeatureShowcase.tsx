@@ -427,22 +427,61 @@ export function FeatureShowcase() {
           {/* Reminders Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'reminders' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
             <div className="p-6">
-              <div className="space-y-2">
-                {[
-                  { time: "7:00 AM", title: "Morning Workout", type: "Daily" },
-                  { time: "8:30 AM", title: "Reading Time", type: "Weekly" },
-                  { time: "6:00 PM", title: "Evening Run", type: "Custom" }
-                ].map((reminder) => (
-                  <div key={reminder.time} className="flex items-center gap-3 p-3 rounded-xl hover:bg-zinc-50">
-                    <div className="h-8 w-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-500">
-                      <Bell className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-zinc-900">{reminder.title}</p>
-                      <p className="text-xs text-zinc-500">{reminder.time} · {reminder.type}</p>
-                    </div>
+              {/* Categories */}
+              <div className="flex items-center gap-2 mb-6">
+                {['♾️ Daily Reminders', '❤️ Personalised messages', '🤝 Shared invites'].map((type) => (
+                  <div
+                    key={type}
+                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600"
+                  >
+                    {type}
                   </div>
                 ))}
+              </div>
+
+              {/* Daily Reminders Section */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                    <Bell className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-zinc-900">Daily Reminders</h3>
+                    <p className="text-xs text-zinc-500">Recurring notifications for daily habits</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {[
+                    { title: "Morning Check-in", time: "7:00 AM", type: "Push notification" },
+                    { title: "Tom has invited you to go to the gym", time: "5:00 PM", type: "Shared reminder", shared: true },
+                    { title: "Weekly Planning with Sarah", time: "Every Friday", type: "Shared reminder", shared: true },
+                    { title: "Evening Reflection", time: "8:00 PM", type: "Push notification" },
+                    //{ title: "Evening Review", time: "8:00 PM", type: "Calendar alert" },
+                  ].map((reminder) => (
+                    <div key={reminder.title} className="flex items-center justify-between p-3 rounded-lg bg-white hover:bg-zinc-50">
+                      <div className="flex items-center gap-3">
+                        {reminder.shared ? (
+                          <Users2 className="h-4 w-4 text-blue-500" />
+                        ) : (
+                          <Clock className="h-4 w-4 text-zinc-400" />
+                        )}
+                        <span className="text-sm text-zinc-900">{reminder.title}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-zinc-500">{reminder.time}</span>
+                        <div className={`px-2 py-0.5 rounded-md text-xs
+                          ${reminder.shared 
+                            ? 'bg-blue-50 text-blue-600' 
+                            : 'bg-zinc-100 text-zinc-600'}`}>
+                          {reminder.type}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Smart Features */}
               </div>
             </div>
           </div>
