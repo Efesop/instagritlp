@@ -322,7 +322,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="w-full bg-zinc-50 py-24">
+        <section id="testimonials" className="w-full bg-zinc-50 py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -453,7 +453,7 @@ export default function Home() {
                   Ready to build better habits?
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-blue-100 max-w-2xl mx-auto">
-                  Join thousands of users who are already transforming their lives with Instagrit.
+                  Join our community who are already transforming their lives with Instagrit.
                 </p>
                 
                 <div className="mt-10 flex items-center justify-center gap-6 flex-wrap">
