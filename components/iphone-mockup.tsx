@@ -12,7 +12,6 @@ export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
 
   console.log({
     env: process.env.NODE_ENV,
-    basePath,
     imagePath,
   })
 
