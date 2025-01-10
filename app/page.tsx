@@ -59,7 +59,7 @@ export default function Home() {
       <div className="flex flex-col min-h-screen overflow-hidden">
         {/* Hero Section */}
         <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-row items-center gap-12 py-16 md:py-24">
+          <div className="flex flex-row items-center gap-12 py-4 md:py-8">
             <div className="flex-1">
               <div className="inline-flex items-center bg-[#EEF3FF] rounded-full px-4 py-2 mb-14">
                 <div className="relative flex h-2 w-2 mr-2">
@@ -494,6 +494,122 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="w-full border-t bg-gradient-to-b from-white to-zinc-50/50">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-16">
+              {/* Company Info */}
+              <div className="space-y-4">
+                <Link 
+                  href="/" 
+                  className="group flex items-center space-x-3 font-bold text-xl"
+                >
+                  <div className="relative">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Image
+                      src="/logo.png"
+                      alt="Instagrit Logo"
+                      width={32}
+                      height={32}
+                      className="relative w-8 h-8 transform-gpu transition-transform group-hover:scale-110"
+                    />
+                  </div>
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    Instagrit
+                  </span>
+                </Link>
+                <p className="text-sm text-zinc-500 leading-relaxed">
+                  Building discipline through shared accountability. Join our community of motivated individuals.
+                </p>
+              </div>
+
+              {/* Product */}
+              <div className="relative">
+                <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-zinc-100/50 to-blue-50/50 opacity-0 hover:opacity-100 transition-opacity rounded-xl -z-10" />
+                <h3 className="font-semibold mb-4 bg-gradient-to-br from-zinc-900 to-zinc-600 bg-clip-text text-transparent">Product</h3>
+                <ul className="space-y-3">
+                  {[
+                    { text: "Features", href: "/#path-to-resistance" },
+                    { text: "How it works", href: "/#how-it-works" },
+                    { text: "Pricing", href: "/#pricing" },
+                    { text: "Download", href: "https://apps.apple.com/gb/app/instagrit/id6737732671" },
+                  ].map((link) => (
+                    <li key={link.text}>
+                      <Link 
+                        href={link.href}
+                        className="group flex items-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors"
+                      >
+                        <span className="relative">
+                          {link.text}
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-blue-600/40 to-indigo-600/40 group-hover:w-full transition-[width]" />
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Company */}
+              <div className="relative">
+                <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-zinc-100/50 to-blue-50/50 opacity-0 hover:opacity-100 transition-opacity rounded-xl -z-10" />
+                <h3 className="font-semibold mb-4 bg-gradient-to-br from-zinc-900 to-zinc-600 bg-clip-text text-transparent">Company</h3>
+                <ul className="space-y-3">
+                  {[
+                    { text: "About", href: "#" },
+                    { text: "Privacy", href: "#" },
+                    { text: "Terms", href: "#" },
+                  ].map((link) => (
+                    <li key={link.text}>
+                      <Link 
+                        href={link.href}
+                        className="group flex items-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors"
+                      >
+                        <span className="relative">
+                          {link.text}
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-blue-600/40 to-indigo-600/40 group-hover:w-full transition-[width]" />
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Social */}
+              <div className="relative">
+                <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-zinc-100/50 to-blue-50/50 opacity-0 hover:opacity-100 transition-opacity rounded-xl -z-10" />
+                <h3 className="font-semibold mb-4 bg-gradient-to-br from-zinc-900 to-zinc-600 bg-clip-text text-transparent">Connect</h3>
+                <div className="flex space-x-4">
+                  <Link 
+                    href="https://twitter.com/instagritapp"
+                    className="group relative p-2 hover:text-blue-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="absolute inset-0 bg-blue-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <svg className="relative h-5 w-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-zinc-200/80">
+              <div className="py-8 flex flex-col sm:flex-row justify-between items-center">
+                <p className="text-sm text-zinc-500">
+                  © {new Date().getFullYear()} Instagrit. All rights reserved.
+                </p>
+                <div className="flex items-center mt-4 sm:mt-0">
+                  <span className="text-sm text-zinc-500">Made with</span>
+                  <span className="mx-2 text-red-500 animate-pulse">❤️</span>
+                  <span className="text-sm text-zinc-500">by Ollie Efez</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   )
