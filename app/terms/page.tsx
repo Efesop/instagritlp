@@ -20,58 +20,86 @@ export default function Terms() {
           
           <div className="prose prose-zinc max-w-none">
             <p className="text-lg text-zinc-500 mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+              Effective Date: January 10, 2025
+            </p>
+
+            <p className="mb-8">
+              These Terms and Conditions ("Terms") govern your use of the Instagrit mobile application ("App"), 
+              owned and operated by Filmshape Ltd ("we," "our," or "us"). By using Instagrit, you agree to these Terms. 
+              If you do not agree, do not use the App.
             </p>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">1. Agreement to Terms</h2>
-              <p>
-                By accessing or using the Instagrit mobile application, you agree to be bound by these Terms of Service.
-                If you disagree with any part of the terms, you may not access the Service.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">2. Use License</h2>
-              <p>
-                Permission is granted to temporarily download one copy of the app for personal, 
-                non-commercial transitory viewing only.
-              </p>
-              <p className="mt-4">This license shall automatically terminate if you violate any of these restrictions:</p>
-              <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>You may not modify or copy the materials</li>
-                <li>You may not use the materials for any commercial purpose</li>
-                <li>You may not attempt to decompile or reverse engineer any software contained in Instagrit</li>
+              <h2 className="text-2xl font-semibold mb-4">1. Use of the App</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Instagrit is designed to help users set goals, track habits, and build discipline.</li>
+                <li>You must be at least 13 years old to use the App.</li>
+                <li>You agree to use the App only for lawful purposes and in accordance with these Terms.</li>
               </ul>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">3. Disclaimer</h2>
-              <p>
-                The materials within Instagrit are provided on an 'as is' basis. Instagrit makes no 
-                warranties, expressed or implied, and hereby disclaims and negates all other warranties 
-                including, without limitation, implied warranties or conditions of merchantability, 
-                fitness for a particular purpose, or non-infringement of intellectual property or 
-                other violation of rights.
-              </p>
+              <h2 className="text-2xl font-semibold mb-4">2. User Data and Privacy</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Instagrit does not collect or store personal data. All data related to your goals, tasks, and progress is stored locally on your device.</li>
+                <li>For details, refer to our Privacy Policy.</li>
+              </ul>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">4. Limitations</h2>
-              <p>
-                In no event shall Instagrit or its suppliers be liable for any damages (including, 
-                without limitation, damages for loss of data or profit, or due to business interruption) 
-                arising out of the use or inability to use Instagrit.
-              </p>
+              <h2 className="text-2xl font-semibold mb-4">3. Ownership and Intellectual Property</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>All content, features, and functionality in the App (excluding user-created content) are owned by Filmshape Ltd.</li>
+                <li>You may not copy, modify, distribute, or create derivative works based on Instagrit without our permission.</li>
+              </ul>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">5. Contact</h2>
-              <p>
-                If you have any questions about these Terms, please contact us at:{" "}
-                <Link href="mailto:support@instagrit.com" className="text-blue-600 hover:text-blue-700">
-                  support@instagrit.com
-                </Link>
+              <h2 className="text-2xl font-semibold mb-4">4. In-App Purchases and Subscriptions</h2>
+              <p>Instagrit offers the following in-app purchases:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-4">
+                <li>Monthly Premium: £2.99 per month</li>
+                <li>Yearly Premium: £22.99 per year</li>
+                <li>Lifetime Premium: £39.99 (one-time purchase)</li>
+              </ul>
+              <ul className="list-disc pl-6 space-y-2 mt-4">
+                <li>Payments are processed through the Apple App Store.</li>
+                <li>Subscriptions auto-renew unless canceled at least 24 hours before the renewal date.</li>
+                <li>You can manage or cancel your subscription through your Apple ID settings.</li>
+                <li>Refunds are subject to Apple's refund policies, and we do not process refunds directly.</li>
+              </ul>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">5. Limitation of Liability</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Instagrit is provided "as is" without warranties of any kind. We do not guarantee that the App will always be available, error-free, or meet your expectations.</li>
+                <li>We are not responsible for any loss of data, device malfunctions, or any other issues arising from the use of the App.</li>
+              </ul>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">6. Termination</h2>
+              <p>We reserve the right to terminate or restrict your access to the App if you violate these Terms.</p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">7. Changes to These Terms</h2>
+              <p>We may update these Terms from time to time. Any changes will be posted in the App and will take effect immediately.</p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">8. Contact Information</h2>
+              <p>If you have any questions about these Terms, contact us at:</p>
+              <p className="mt-4">
+                Filmshape Ltd<br />
+                Email: <Link href="mailto:ollie@instagrit.com" className="text-blue-600 hover:text-blue-700">
+                  ollie@instagrit.com
+                </Link><br />
+                Address: 9 church road, redditch, b966eh
+              </p>
+              <p className="mt-4">
+                By using Instagrit, you acknowledge that you have read, understood, and agreed to these Terms.
               </p>
             </section>
           </div>

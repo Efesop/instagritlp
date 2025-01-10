@@ -20,52 +20,79 @@ export default function PrivacyPolicy() {
           
           <div className="prose prose-zinc max-w-none">
             <p className="text-lg text-zinc-500 mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+              Effective Date: January 10, 2025
             </p>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
+              <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
               <p>
-                At Instagrit, we take your privacy seriously. This Privacy Policy explains how we collect, 
-                use, disclose, and safeguard your information when you use our mobile application.
+                Welcome to Instagrit, a mobile application designed to help users set goals, track habits, and build discipline. 
+                This Privacy Policy outlines how Filmshape Ltd ("we," "our," or "us") collects, uses, discloses, and protects 
+                your information when you use the Instagrit app ("App").
               </p>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Account information (email, name)</li>
-                <li>Usage data and activity</li>
-                <li>Device information</li>
-                <li>Task and habit tracking data</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">How We Use Your Information</h2>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>To provide and maintain our Service</li>
-                <li>To notify you about changes to our Service</li>
-                <li>To provide customer support</li>
-                <li>To gather analysis or valuable information to improve our Service</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Data Security</h2>
+              <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
               <p>
-                We implement appropriate technical and organizational security measures to protect 
-                your personal information against unauthorized access, alteration, disclosure, or destruction.
+                We are committed to protecting your privacy and minimizing data collection. As of the effective date, 
+                we do not collect any personal data from users of the Instagrit app. All data related to your goals, 
+                tasks, and progress is stored locally on your device and is not transmitted to our servers or any third parties.
               </p>
             </section>
 
             <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+              <h2 className="text-2xl font-semibold mb-4">3. Data Security</h2>
               <p>
-                If you have any questions about this Privacy Policy, please contact us at:{" "}
-                <Link href="mailto:support@instagrit.com" className="text-blue-600 hover:text-blue-700">
-                  support@instagrit.com
-                </Link>
+                We implement appropriate technical and organizational measures to protect the data stored on your device 
+                from unauthorized access, alteration, disclosure, or destruction. However, please be aware that no security 
+                measures are entirely foolproof, and we cannot guarantee absolute security.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">4. Third-Party Services</h2>
+              <p>
+                Instagrit does not integrate with third-party services that collect user data. However, the App is 
+                available for download through the Apple App Store, which may collect certain information as described 
+                in Apple's Privacy Policy. We encourage you to review Apple's policies to understand their data 
+                collection practices.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">5. Children's Privacy</h2>
+              <p>
+                Our App is not intended for use by children under the age of 13. We do not knowingly collect personal 
+                information from children under 13. If we become aware that we have inadvertently collected such 
+                information, we will take steps to delete it promptly.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">6. Changes to This Privacy Policy</h2>
+              <p>
+                We may update this Privacy Policy from time to time. Any changes will be effective immediately upon 
+                posting the updated policy within the App. We encourage you to review this policy periodically to 
+                stay informed about our data practices.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">7. Contact Us</h2>
+              <p>
+                If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
+              </p>
+              <p className="mt-4">
+                Filmshape Ltd<br />
+                Email: <Link href="mailto:ollie@instagrit.com" className="text-blue-600 hover:text-blue-700">
+                  ollie@instagrit.com
+                </Link><br />
+                Address: 9 church road, Redditch B966eh
+              </p>
+              <p className="mt-4">
+                By using the Instagrit app, you acknowledge that you have read and understood this Privacy Policy 
+                and agree to its terms.
               </p>
             </section>
           </div>
