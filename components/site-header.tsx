@@ -32,23 +32,23 @@ export function SiteHeader() {
         <NavigationMenu className="hidden md:flex ml-12">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Features</NavigationMenuTrigger>
+              <NavigationMenuTrigger>The app</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid gap-3 p-6 w-[400px]">
                   <div className="grid grid-cols-1 gap-4">
                     {[
                       {
-                        title: "Duty Tracking",
-                        description: "Set and track your daily duties with ease",
+                        title: "What is Instagrit?",
+                        description: "No nonsense habit tracker",
                       },
                       {
-                        title: "Habit Streaks",
-                        description: "Build momentum with visual streak tracking",
+                        title: "How it works",
+                        description: "Solo or shared accountability to get disciplined",
                       },
-                      {
+                      /*{
                         title: "Analytics",
                         description: "Get insights into your progress",
-                      },
+                      },*/
                     ].map((item) => (
                       <div
                         key={item.title}
