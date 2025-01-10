@@ -557,8 +557,8 @@ export default function Home() {
                 <ul className="space-y-3">
                   {[
                     { text: "About", href: "#" },
-                    { text: "Privacy", href: "#" },
-                    { text: "Terms", href: "#" },
+                    { text: "Privacy", href: "privacy" },
+                    { text: "Terms", href: "terms" },
                   ].map((link) => (
                     <li key={link.text}>
                       <Link 
