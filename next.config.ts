@@ -9,10 +9,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   distDir: 'out',
-  // Enable more detailed logging in development
-  logging: {
-    level: isProduction ? 'error' : 'info',
-  },
 }
 
 export default nextConfig 

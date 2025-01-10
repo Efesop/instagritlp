@@ -40,25 +40,28 @@ export function SiteHeader() {
                       {
                         title: "What is Instagrit?",
                         description: "No nonsense habit tracker",
+                        href: "/#path-to-resistance"
                       },
                       {
                         title: "How it works",
                         description: "Solo or shared accountability to get disciplined",
+                        href: "/#how-it-works"
                       },
                       /*{
                         title: "Analytics",
                         description: "Get insights into your progress",
                       },*/
                     ].map((item) => (
-                      <div
+                      <Link
                         key={item.title}
+                        href={item.href || "#"}
                         className="group grid gap-1 p-3 hover:bg-accent rounded-lg transition-colors"
                       >
                         <h3 className="text-sm font-semibold">{item.title}</h3>
                         <p className="text-sm text-muted-foreground">
                           {item.description}
                         </p>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>

@@ -242,7 +242,7 @@ export default function Home() {
         </section>
 
         {/* Core Features */}
-        <section className="w-full bg-gradient-to-b from-zinc-50/50 to-white py-24">
+        <section id="path-to-resistance" className="w-full bg-gradient-to-b from-zinc-50/50 to-white py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div className="text-center space-y-4 max-w-2xl mx-auto">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900">
@@ -311,7 +311,7 @@ export default function Home() {
         </section>
 
         {/* Additional Features */}
-        <section className="w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-white py-24">
+        <section id="how-it-works" className="w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-white py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 mb-16">
               Benefits and Features <br />
