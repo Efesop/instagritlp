@@ -415,10 +415,10 @@ export function FeatureShowcase() {
                 : 'hover:bg-zinc-50'}`}
           >
             <div className="flex gap-4 items-start">
-              <div className={`p-2 rounded-lg transition-colors duration-300
+              <div className={`p-2 rounded-lg transition-all duration-300
                 ${activeFeature === feature.id 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-zinc-100 text-zinc-400 group-hover:text-zinc-500'}`}
+                  ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-md shadow-blue-500/20 scale-110' 
+                  : 'bg-white/80 text-blue-500/40 group-hover:text-blue-500 group-hover:bg-blue-50 border border-blue-100/50'}`}
               >
                 {feature.icon}
               </div>

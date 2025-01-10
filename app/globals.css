@@ -764,3 +764,36 @@ body {
 .animate-reminder-pulse {
   animation: reminder-pulse 0.8s ease-in-out infinite;
 }
+
+@keyframes icon-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.group:hover .animate-icon-pop {
+  animation: icon-pop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes icon-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-icon-gradient {
+  background-size: 200% 200%;
+  animation: icon-gradient 3s ease infinite;
+}

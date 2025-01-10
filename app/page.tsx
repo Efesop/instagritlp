@@ -114,8 +114,8 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-semibold">1,000+ users</span>
-                    <span className="text-xs text-zinc-500">Join the community</span>
+                    <span className="text-sm font-semibold">50+ users</span>
+                    <span className="text-xs text-zinc-500">Share a task with a friend</span>
                   </div>
                 </div>
               </div>
@@ -127,11 +127,11 @@ export default function Home() {
                   { text: "Share Tasks", icon: "🤝" },
                   { text: "Track Progress", icon: "📊" },
                   { text: "Build habits", icon: "🔥" },
-                  { text: "Real-time Updates", icon: "⚡" }
+                  { text: "Get disciplined", icon: "⚡" }
                 ].map((feature) => (
                   <div
                     key={feature.text}
-                    className="group relative px-4 py-3 rounded-full bg-white border border-zinc-100 shadow-sm transform-gpu transition-all hover:shadow-md hover:scale-105 will-change-transform backface-hidden"
+                    className="group relative px-3 py-2 rounded-full bg-white border border-zinc-100 shadow-sm transform-gpu transition-all hover:shadow-md hover:scale-105 will-change-transform backface-hidden"
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700">
                       {feature.icon}
@@ -224,9 +224,9 @@ export default function Home() {
           {/* Updated Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-t border-zinc-100">
             {[
-              { label: "Active Users", value: "50+", trend: "+25% this month" },
-              { label: "Tasks Completed", value: "50,000+", trend: "+12% this week" },
-              { label: "Avg. Streak", value: "12 Days", trend: "↑ 3 days" },
+              { label: "Active Users", value: "50+", trend: "+50% this month" },
+              { label: "Tasks Completed", value: "350+", trend: "+200% this week" },
+              { label: "Avg. Streak", value: "3 Days", trend: "↑ 2 days" },
               { label: "App Rating", value: "4.9/5", trend: "⭐ App Store" },
             ].map((stat) => (
               <div key={stat.label} className="text-center group">
@@ -247,10 +247,10 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div className="text-center space-y-4 max-w-2xl mx-auto">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900">
-                Core Features
+                Your path to most resistance
               </h2>
               <p className="text-zinc-500 text-lg font-medium">
-                Everything you need to build lasting habits
+                Everything you need to become more disciplined
               </p>
             </div>
 
@@ -258,7 +258,7 @@ export default function Home() {
               {[
                 {
                   icon: <TrackingIcon className="text-blue-600" />,
-                  title: "Smart Duty Tracking",
+                  title: "Smart Task Tracking",
                   description: "Set daily duties, track progress, and never lose sight of your goals",
                   hoverGradient: "from-blue-500/10 to-blue-600/10",
                   underlineGradient: "from-blue-500/50 to-blue-600/50"
@@ -315,8 +315,7 @@ export default function Home() {
         <section className="w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-white py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 mb-16">
-              Powerful tools for <br />
-              consistent progress
+              Benefits and Features <br />
             </h2>
             
             <FeatureShowcase />
@@ -336,18 +335,18 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <Testimonial
-                quote="This app has completely transformed my daily routine. The streak system keeps me motivated!"
-                author="Sarah K."
+                quote="This app is just what i was hoping for, an easy way to track large goals and small tasks. I like how user friendly it is."
+                author="Nomads Nest"
                 rating={5}
               />
               <Testimonial
-                quote="Simple, effective, and actually makes me want to complete my daily tasks."
-                author="Michael R."
+                quote="Quick and easy, helped me set realistic goals whilst staying accountable"
+                author="I am Super Vegeta"
                 rating={5}
               />
               <Testimonial
-                quote="The best habit tracking app I have used. Clean interface and powerful features."
-                author="David M."
+                quote="The app teaches me how to get things done."
+                author="Davis Tang"
                 rating={5}
               />
             </div>
@@ -470,16 +469,22 @@ export default function Home() {
 
                   {/* Social proof pill */}
                   <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 backdrop-blur-sm border border-white/10">
-                    <div className="flex -space-x-1">
-                      {[...Array(3)].map((_, i) => (
+                    <div className="flex -space-x-2">
+                      {[
+                        { initial: "J", bg: "from-blue-400 to-blue-500" },
+                        { initial: "M", bg: "from-purple-400 to-purple-500" },
+                        { initial: "R", bg: "from-emerald-400 to-emerald-500" }
+                      ].map((avatar, i) => (
                         <div 
-                          key={i}
-                          className="w-6 h-6 rounded-full ring-2 ring-blue-600 bg-gradient-to-br from-blue-500 to-indigo-500"
-                        />
+                          key={i} 
+                          className={`w-6 h-6 rounded-full bg-gradient-to-br ${avatar.bg} flex items-center justify-center text-[10px] font-medium text-white ring-2 ring-blue-600/20`}
+                        >
+                          {avatar.initial}
+                        </div>
                       ))}
                     </div>
                     <span className="text-sm font-medium text-white">
-                      1,000+ Happy Users
+                      50+ Happy Users
                     </span>
                   </div>
                 </div>
