@@ -5,8 +5,7 @@ import { ArrowRight, Menu } from "lucide-react"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu"
 
 export function SiteHeader() {
-  const basePath = process.env.NODE_ENV === 'production' ? '/instagritlp' : ''
-  const logoPath = `${basePath}/logo.png`
+  const logoPath = '/logo.png'
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

@@ -8,8 +8,7 @@ interface IPhoneMockupProps {
 }
 
 export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
-  const basePath = process.env.NODE_ENV === 'production' ? '/instagritlp' : ''
-  const imagePath = `${basePath}${screenshot}`
+  const imagePath = screenshot
 
   console.log({
     env: process.env.NODE_ENV,
