@@ -31,8 +31,7 @@ function Testimonial({ quote, author, rating }: TestimonialProps) {
 }
 
 const AppStoreButton = () => {
-  const basePath = process.env.NODE_ENV === 'production' ? '/instagritlp' : ''
-  const imagePath = `${basePath}/iosdownload.svg`
+  const imagePath = '/iosdownload.svg'  // Direct reference from public directory
   
   return (
     <Link 
