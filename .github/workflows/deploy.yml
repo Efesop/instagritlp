@@ -31,6 +31,8 @@ jobs:
         run: npm install
       - name: Build with Next.js
         run: npm run build
+        env:
+          GITHUB_PAGES: 'false'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
