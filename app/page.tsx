@@ -313,10 +313,10 @@ export default function Home() {
         </section>
 
         {/* Additional Features */}
-        <section id="how-it-works" className="w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-white py-24">
+        <section id="how-it-works" className="w-full bg-[#F5F7FF] py-12 lg:py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 mb-16">
-              Benefits and Features <br />
+            <h2 className="text-2xl lg:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 mb-8 lg:mb-16 text-center">
+              Benefits and Features
             </h2>
             
             <FeatureShowcase />

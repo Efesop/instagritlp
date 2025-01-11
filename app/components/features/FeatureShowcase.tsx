@@ -377,45 +377,45 @@ export function FeatureShowcase() {
   ]
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-start">
       {/* Clean Menu Cards */}
-      <div className="space-y-3">
+      <div className="space-y-1.5 lg:space-y-3">
         {[
           {
             id: "shared-tasks",
             title: "Shared Tasks & Accountability",
             description: "Work on goals together and keep each other motivated",
-            icon: <Users2 className="h-5 w-5" />
+            icon: <Users2 className="h-4 w-4 lg:h-5 lg:w-5" />
           },
           {
             id: "achievement",
             title: "Achievement System",
             description: "Stay motivated with rewards and milestones for consistent effort",
-            icon: <Target className="h-5 w-5" />
+            icon: <Target className="h-4 w-4 lg:h-5 lg:w-5" />
           },
           {
             id: "reminders",
             title: "Smart Reminders",
             description: "Never miss a duty with customizable notifications",
-            icon: <Bell className="h-5 w-5" />
+            icon: <Bell className="h-4 w-4 lg:h-5 lg:w-5" />
           },
           {
             id: "analytics",
             title: "Detailed Analytics",
             description: "Track your progress with beautiful, interactive charts",
-            icon: <BarChart3 className="h-5 w-5" />
+            icon: <BarChart3 className="h-4 w-4 lg:h-5 lg:w-5" />
           }
         ].map((feature) => (
           <div
             key={feature.id}
             onMouseEnter={() => setActiveFeature(feature.id)}
-            className={`group p-6 rounded-2xl transition-all duration-300 cursor-pointer
+            className={`group p-3 lg:p-6 rounded-lg lg:rounded-2xl transition-all duration-300 cursor-pointer
               ${activeFeature === feature.id 
                 ? 'bg-blue-50 ring-1 ring-blue-500/20' 
                 : 'hover:bg-zinc-50'}`}
           >
-            <div className="flex gap-4 items-start">
-              <div className={`p-2 rounded-lg transition-all duration-300
+            <div className="flex gap-2.5 lg:gap-4 items-center lg:items-start">
+              <div className={`p-1.5 lg:p-2 rounded-lg transition-all duration-300 shrink-0
                 ${activeFeature === feature.id 
                   ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-md shadow-blue-500/20 scale-110' 
                   : 'bg-white/80 text-blue-500/40 group-hover:text-blue-500 group-hover:bg-blue-50 border border-blue-100/50'}`}
@@ -423,12 +423,12 @@ export function FeatureShowcase() {
                 {feature.icon}
               </div>
               <div>
-                <h3 className={`font-medium text-base mb-1 transition-colors duration-300
+                <h3 className={`font-medium text-base lg:text-base transition-colors duration-300 leading-tight
                   ${activeFeature === feature.id ? 'text-blue-600' : 'text-zinc-800'}`}
                 >
                   {feature.title}
                 </h3>
-                <p className="text-sm text-zinc-500">
+                <p className="hidden md:block text-xs lg:text-sm text-zinc-500 mt-1">
                   {feature.description}
                 </p>
               </div>
@@ -439,7 +439,7 @@ export function FeatureShowcase() {
 
       {/* Clean Demo Cards */}
       <div className="relative lg:sticky lg:top-8">
-        <div className="relative rounded-2xl overflow-hidden bg-white ring-1 ring-zinc-200">
+        <div className="relative rounded-xl lg:rounded-2xl overflow-hidden bg-white ring-1 ring-zinc-200">
           {/* Shared Tasks Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'shared-tasks' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
             {renderTaskDemo()}
@@ -452,13 +452,13 @@ export function FeatureShowcase() {
 
           {/* Reminders Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'reminders' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
-            <div className="p-6">
+            <div className="p-4 lg:p-6">
               {/* Categories */}
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex flex-wrap items-center gap-2 mb-4 lg:mb-6">
                 {['♾️ Daily Reminders', '❤️ Personalised messages', '🤝 Shared invites'].map((type, index) => (
                   <div
                     key={type}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600 animate-fade-in"
+                    className="px-2 lg:px-3 py-1 lg:py-1.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600 animate-fade-in"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {type}
@@ -520,7 +520,7 @@ export function FeatureShowcase() {
 
           {/* Analytics Demo */}
           <div className={`transition-all duration-300 ${activeFeature === 'analytics' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full absolute inset-0'}`}>
-            <div className="p-6">
+            <div className="p-4 lg:p-6">
               {/* Monthly Progress Chart */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
