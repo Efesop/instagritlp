@@ -207,11 +207,12 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* iPhone Mockup */}
-              <div className="relative z-20">
+              {/* iPhone Mockup Container */}
+              <div className="relative z-20 h-[400px] md:h-auto overflow-hidden">
                 <IPhoneMockup 
                   screenshot="/landing3.png"
                   alt="Instagrit App Screenshot"
+                  className="scale-[0.85] md:scale-100 -mt-10 md:mt-0 transform-gpu"
                 />
               </div>
 

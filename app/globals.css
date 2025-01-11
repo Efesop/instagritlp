@@ -99,6 +99,9 @@ body {
   .will-change-transform {
     will-change: transform;
   }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
 
 @keyframes dash {

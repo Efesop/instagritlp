@@ -5,9 +5,10 @@ import Image from "next/image"
 interface IPhoneMockupProps {
   screenshot: string
   alt: string
+  className?: string
 }
 
-export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
+export function IPhoneMockup({ screenshot, alt, className = "" }: IPhoneMockupProps) {
   const imagePath = screenshot
 
   console.log({
@@ -16,7 +17,7 @@ export function IPhoneMockup({ screenshot, alt }: IPhoneMockupProps) {
   })
 
   return (
-    <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[55px] h-[700px] w-[350px] shadow-xl">
+    <div className={`relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[55px] h-[700px] w-[350px] shadow-xl ${className}`}>
       {/* Dynamic Island */}
       <div className="absolute top-0 inset-x-0 h-6 flex justify-center">
         <div className="w-[120px] h-[35px] bg-black rounded-[20px] mt-2 flex items-center justify-center">
