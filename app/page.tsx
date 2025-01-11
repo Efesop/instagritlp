@@ -355,13 +355,13 @@ export default function Home() {
         </section>
 
         {/* Pricing Section */}
-        <section className="w-full py-24 bg-gradient-to-b from-zinc-50/50 to-white" id="pricing">
+        <section className="w-full py-12 sm:py-24 bg-gradient-to-b from-zinc-50/50 to-white" id="pricing">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center space-y-4 max-w-2xl mx-auto mb-8">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Pricing
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Start free, upgrade if you need it.
               </p>
             </div>
@@ -369,24 +369,9 @@ export default function Home() {
             {/* Pricing Toggle */}
             <PricingToggle />
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12 max-w-5xl mx-auto">
-              <PricingCard
-                title="Free"
-                price="£0"
-                features={[
-                  { text: "Create tasks/duties", included: true },
-                  { text: "Task sharing with friends", included: true },
-                  { text: "Task history and notifications", included: true },
-                  { text: "Daily streaks and trophies", included: true },
-                  { text: "Dark mode", included: true },
-                  { text: "Categorise tasks", included: false },
-                  { text: "Analytics and tracking", included: false },
-                  { text: "Task progress visualisations", included: false },
-                  { text: "Daily rank monitoring", included: false },
-
-                ]}
-                appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
-              />
+            {/* Pricing cards grid */}
+            <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3 lg:gap-12 max-w-5xl mx-auto">
+              {/* Premium Card - Shows first on mobile */}
               <PricingCard
                 title="Premium"
                 price="£2.99"
@@ -406,10 +391,11 @@ export default function Home() {
                 ]}
                 appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
               />
+              
+              {/* Lifetime Card - Shows second on mobile */}
               <PricingCard
                 title="Lifetime"
                 price="£39.99"
-                //isLifetime={true}
                 features={[
                   { text: "Create tasks/duties", included: true },
                   { text: "Task sharing with friends", included: true },
@@ -423,12 +409,32 @@ export default function Home() {
                 ]}
                 appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
               />
+
+              {/* Free Card - Shows last on mobile */}
+              <div className="md:[grid-row:1] md:col-start-1">
+                <PricingCard
+                  title="Free"
+                  price="£0"
+                  features={[
+                    { text: "Create tasks/duties", included: true },
+                    { text: "Task sharing with friends", included: true },
+                    { text: "Task history and notifications", included: true },
+                    { text: "Daily streaks and trophies", included: true },
+                    { text: "Dark mode", included: true },
+                    { text: "Categorise tasks", included: false },
+                    { text: "Analytics and tracking", included: false },
+                    { text: "Task progress visualisations", included: false },
+                    { text: "Daily rank monitoring", included: false },
+                  ]}
+                  appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
+                />
+              </div>
             </div>
 
             {/* FAQ or Additional Info */}
-            <div className="mt-16 text-center">
-              <p className="text-sm text-zinc-500">
-                All paid plans include a 7-day free trial. Cancel anytime.{" "}
+            <div className="mt-8 sm:mt-16 text-center">
+              <p className="text-xs sm:text-sm text-zinc-500">
+                Cancel anytime through iOS app store.{" "}
                 <Link href="https://apps.apple.com/gb/app/instagrit/id6737732671" className="text-blue-600 hover:text-blue-700">
                   Learn more
                 </Link>
