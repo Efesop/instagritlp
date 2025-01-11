@@ -70,13 +70,13 @@ export default function Home() {
               </div>
               
               <h1 className="text-6xl font-bold tracking-tight mb-8">
-                Progress Through{" "}
-                <span className="inline-flex items-baseline">
-                  <span className="relative inline-flex">
-                    {'Shared'.split('').map((letter, i) => (
+                Get Disciplined With{" "}
+                <span className="inline-flex">
+                  <span className="relative inline-flex whitespace-nowrap">
+                    {'Friends'.split('').map((letter, i) => (
                       <span 
                         key={i}
-                        className="text-blue-600 animate-letter-bounce"
+                        className="text-blue-600 text-7xl animate-letter-bounce"
                         style={{ 
                           animationDelay: `${i * 100}ms`,
                         }}
@@ -85,7 +85,6 @@ export default function Home() {
                       </span>
                     ))}
                   </span>
-                  <span className="text-zinc-900 ml-2">Discipline</span>
                 </span>
               </h1>
               
