@@ -59,9 +59,11 @@ export default function Home() {
       <div className="flex flex-col min-h-screen overflow-hidden">
         {/* Hero Section */}
         <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-row items-center gap-12 py-4 md:py-8">
-            <div className="flex-1">
-              <div className="inline-flex items-center bg-[#EEF3FF] rounded-full px-4 py-2 mb-14">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 py-4 md:py-8">
+            {/* Left side content */}
+            <div className="flex-1 text-center md:text-left">
+              {/* iOS Badge */}
+              <div className="inline-flex items-center bg-[#EEF3FF] rounded-full px-4 py-2 mb-8 md:mb-14">
                 <div className="relative flex h-2 w-2 mr-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4066E8] opacity-75"></span>
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4066E8]"></span>
@@ -69,14 +71,15 @@ export default function Home() {
                 <span className="text-[#4066E8] text-sm font-medium">Now available on iOS</span>
               </div>
               
-              <h1 className="text-6xl font-bold tracking-tight mb-8">
+              {/* Heading */}
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 md:mb-8">
                 Get Disciplined With{" "}
                 <span className="inline-flex">
                   <span className="relative inline-flex whitespace-nowrap">
                     {'Friends'.split('').map((letter, i) => (
                       <span 
                         key={i}
-                        className="text-blue-600 text-7xl animate-letter-bounce"
+                        className="text-blue-600 text-5xl md:text-7xl animate-letter-bounce"
                         style={{ 
                           animationDelay: `${i * 100}ms`,
                         }}
@@ -88,11 +91,13 @@ export default function Home() {
                 </span>
               </h1>
               
-              <p className="text-xl text-muted-foreground mb-16">
+              {/* Description */}
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-16">
                 Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.
               </p>
-
-              <div className="flex items-center gap-4 mb-16">
+              
+              {/* Action buttons and social proof */}
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-8 md:mb-16">
                 <AppStoreButton />
                 
                 <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/50 border border-zinc-100 backdrop-blur-sm">
@@ -118,9 +123,8 @@ export default function Home() {
                 </div>
               </div>
 
-            
-
-              <div className="flex flex-wrap gap-4">
+              {/* Features list */}
+              <div className="flex flex-wrap justify-center md:justify-start gap-3">
                 {[
                   { text: "Share Tasks", icon: "🤝" },
                   { text: "Track Progress", icon: "📊" },
@@ -133,17 +137,15 @@ export default function Home() {
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700">
                       {feature.icon}
-                      <div className="flex flex-col">
-                        <span>{feature.text}</span>
-                      </div>
+                      <span>{feature.text}</span>
                     </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right side with iPhone remains the same */}
-            <div className="flex-1 relative flex justify-center">
+            {/* Right side with iPhone */}
+            <div className="relative w-full md:w-auto md:flex-1">
               {/* Notification Pills - Modern frosted glass effect */}
               {/* Top Right - Success notification */}
               <div className="absolute right-[10%] top-[10%] z-30">
