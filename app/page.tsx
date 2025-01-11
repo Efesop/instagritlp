@@ -148,7 +148,7 @@ export default function Home() {
             <div className="relative w-full md:w-auto md:flex-1">
               {/* Notification Pills - Modern frosted glass effect */}
               {/* Top Right - Success notification */}
-              <div className="absolute right-[10%] top-[10%] z-30">
+              <div className="absolute right-[5%] sm:right-[10%] top-[8%] sm:top-[10%] z-30">
                 <div className="group bg-white/80 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="p-1.5 rounded-full bg-green-500/20">
                     <CheckCircle className="h-4 w-4 text-green-400" strokeWidth={2.5} />
@@ -160,7 +160,7 @@ export default function Home() {
               </div>
 
               {/* Top Left - Shared Task Activity */}
-              <div className="absolute left-[5%] top-[30%] z-30">
+              <div className="absolute left-[5%] top-[28%] sm:top-[30%] z-30">
                 <div className="group bg-white/80 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float-delayed backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="flex -space-x-2">
                     <div className="h-5 w-5 rounded-full bg-gradient-to-br from-rose-500 to-orange-400 ring-[3px] ring-rose-500/20 flex items-center justify-center text-[10px] font-medium text-white">S</div>
@@ -173,7 +173,7 @@ export default function Home() {
               </div>
 
               {/* Middle Right - Status notification */}
-              <div className="absolute right-[5%] top-[50%] z-30">
+              <div className="absolute right-[5%] top-[48%] sm:top-[50%] z-30">
                 <div className="group bg-white/80 hover:bg-gray-500/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="h-5 w-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 ring-[3px] ring-blue-500/20" />
                   <span className="text-[15px] font-medium text-black drop-shadow-sm">
@@ -183,7 +183,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Left - Achievement notification */}
-              <div className="absolute left-[10%] bottom-[35%] z-30">
+              <div className="absolute left-[5%] top-[68%] sm:bottom-[35%] z-30">
                 <div className="group bg-white/80 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float-delayed backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="p-1.5 rounded-full bg-blue-500/20">
                     <Target className="h-4 w-4 text-blue-400" strokeWidth={2.5} />
@@ -195,7 +195,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Right - Social notification */}
-              <div className="absolute right-[8%] bottom-[15%] z-30">
+              <div className="absolute right-[5%] top-[88%] sm:bottom-[15%] z-30">
                 <div className="group bg-white/80 hover:bg-white/20 rounded-2xl py-3 px-5 flex items-center gap-3 animate-float backdrop-blur-lg will-change-transform border border-white/20 shadow-[0_0_20px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="flex -space-x-1">
                     <div className="h-5 w-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 ring-[3px] ring-emerald-500/20" />
