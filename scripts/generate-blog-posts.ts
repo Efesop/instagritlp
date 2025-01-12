@@ -1,6 +1,38 @@
 import cron from 'node-cron'
 import { generateBlogPost, saveBlogPost, TOPICS } from '../lib/blog/generator'
 import { updateSitemap, generateRSSFeed } from '../lib/blog/utils'
+import { readdir, readFile } from 'fs/promises'
+import { join } from 'path'
+import matter from 'gray-matter'
+
+// Track used topics across cron jobs
+const usedTopics = new Set<string>()
+
+// Function to check existing posts to avoid duplicates
+const getRecentTopics = async (): Promise<Set<string>> => {
+  try {
+    const blogDir = join(process.cwd(), 'content/blog')
+    const files = await readdir(blogDir)
+    
+    // Sort files by creation time (most recent first)
+    const sortedFiles = files.sort().reverse().slice(0, TOPICS.length)
+    
+    const recentTopics = new Set<string>()
+    
+    for (const file of sortedFiles) {
+      const content = await readFile(join(blogDir, file), 'utf8')
+      const { data } = matter(content)
+      if (data.tags && data.tags[0]) {
+        recentTopics.add(data.tags[0].replace(/-/g, ' '))
+      }
+    }
+    
+    return recentTopics
+  } catch (error) {
+    console.error('Error reading recent topics:', error)
+    return new Set()
+  }
+}
 
 // Run three times per week: Monday, Wednesday, and Friday at a random time between 9am-5pm
 const schedules = [
@@ -16,25 +48,38 @@ schedules.forEach(schedule => {
       const delay = Math.floor(Math.random() * 60) * 60000
       await new Promise(resolve => setTimeout(resolve, delay))
 
-      // Pick a random topic, but don't repeat recent ones
-      const usedTopics = new Set()
-      let topic
-      do {
-        topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
-      } while (usedTopics.has(topic) && usedTopics.size < TOPICS.length)
+      // Get recently used topics
+      const recentTopics = await getRecentTopics()
       
-      usedTopics.add(topic)
-      if (usedTopics.size >= TOPICS.length) usedTopics.clear()
+      // Find available topics (not used recently)
+      const availableTopics = TOPICS.filter(topic => 
+        !recentTopics.has(topic) && !usedTopics.has(topic)
+      )
 
-      const content = await generateBlogPost(topic)
-      const slug = topic.toLowerCase().replace(/\s+/g, '-')
-      await saveBlogPost(content, slug)
+      if (availableTopics.length === 0) {
+        console.log('All topics recently used, clearing history')
+        usedTopics.clear()
+        // Try again with all topics available
+        const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
+        const content = await generateBlogPost(topic)
+        const slug = topic.toLowerCase().replace(/\s+/g, '-')
+        await saveBlogPost(content, slug)
+      } else {
+        // Pick a random topic from available ones
+        const topic = availableTopics[Math.floor(Math.random() * availableTopics.length)]
+        const content = await generateBlogPost(topic)
+        const slug = topic.toLowerCase().replace(/\s+/g, '-')
+        await saveBlogPost(content, slug)
+        
+        // Track used topic
+        usedTopics.add(topic)
+      }
       
       // Update sitemap and RSS feed
       await updateSitemap()
       await generateRSSFeed()
 
-      console.log(`Successfully generated blog post about: ${topic} at ${new Date().toISOString()}`)
+      console.log(`Successfully generated blog post at ${new Date().toISOString()}`)
     } catch (error) {
       console.error('Failed to generate blog post:', error)
     }

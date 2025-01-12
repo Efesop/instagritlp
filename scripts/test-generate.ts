@@ -9,7 +9,8 @@ console.log('API Key present:', !!process.env.OPENAI_API_KEY)
 
 const testGeneration = async () => {
   try {
-    const topic = TOPICS[0] // Use first topic for testing
+    // Select a random topic
+    const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
     console.log('Generating post about:', topic)
     
     const content = await generateBlogPost(topic)
@@ -17,16 +18,7 @@ const testGeneration = async () => {
       throw new Error('No content generated')
     }
     
-    // Add null check and sanitize topic
-    if (!topic) {
-      throw new Error('No topic selected')
-    }
-    
-    // Ensure topic is a string and sanitize it
-    const slug = typeof topic === 'string' 
-      ? topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-      : 'default-post'
-    
+    const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
     await saveBlogPost(content, slug)
     
     await updateSitemap()

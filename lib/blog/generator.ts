@@ -1,5 +1,5 @@
 import OpenAI from 'openai'
-import { writeFile, mkdir } from 'fs/promises'
+import { writeFile, mkdir, readdir, readFile } from 'fs/promises'
 import { join } from 'path'
 import { Topic } from './types'
 import matter from 'gray-matter'
@@ -24,8 +24,42 @@ const TOPICS: Topic[] = [
   'self-improvement'
 ]
 
+// Track recently generated posts to avoid duplicates
+const recentPosts = new Set<string>()
+
+// Add function to check existing posts
+const checkExistingPosts = async (): Promise<Set<string>> => {
+  try {
+    const blogDir = join(process.cwd(), 'content/blog')
+    const files = await readdir(blogDir)
+    
+    // Sort files by creation time (most recent first)
+    const sortedFiles = files.sort().reverse().slice(0, TOPICS.length)
+    const existingTopics = new Set<string>()
+    
+    for (const file of sortedFiles) {
+      const content = await readFile(join(blogDir, file), 'utf8')
+      const { data } = matter(content)
+      if (data.tags && data.tags[0]) {
+        existingTopics.add(data.tags[0].replace(/-/g, ' '))
+      }
+    }
+    
+    return existingTopics
+  } catch (error) {
+    console.error('Error checking existing posts:', error)
+    return new Set()
+  }
+}
+
 const generateBlogPost = async (topic: string): Promise<string> => {
   try {
+    // Check both recent and existing posts
+    const existingTopics = await checkExistingPosts()
+    if (recentPosts.has(topic) || existingTopics.has(topic)) {
+      throw new Error(`Recently generated post about ${topic}. Skipping to maintain uniqueness.`)
+    }
+
     const currentDate = new Date()
     const isoDate = currentDate.toISOString()
     const year = currentDate.getFullYear()
@@ -55,30 +89,30 @@ keywords:
         {
           role: "system",
           content: `You are an expert content writer specializing in habit formation and self-improvement.
-          Create engaging, informative blog content that:
-          - Is written in a natural, conversational tone
-          - Includes relevant research and expert insights
-          - Uses real-world examples and practical applications
-          - Maintains SEO best practices without being overly structured
-          - Focuses on providing genuine value to readers
+          Create unique, engaging content that:
+          - Uses different examples and case studies each time
+          - References varied research and studies
+          - Provides fresh insights while maintaining SEO best practices
+          - Focuses on providing unique value to readers
           - Has a clear introduction, 3-4 main sections, and conclusion
-          - Uses headers naturally, only when needed to break up content
+          - Is written in a natural, conversational tone
+          - Uses headers naturally, only when needed
           - Includes actionable takeaways
 
-          IMPORTANT: Do not include any markdown headers at the start of your content. The title is already provided in the frontmatter.
+          IMPORTANT: Do not include any markdown headers at the start. The title is already provided.
           Start with a regular paragraph introducing the topic.`
         },
         {
           role: "user",
-          content: `Write an engaging, SEO-optimized blog post about ${topic}. 
+          content: `Write a unique, SEO-optimized and engaging blog post about ${topic}. 
           Start with a regular paragraph (no headers).
           
-          Write the blog post in a natural, flowing style with:
+          Ensure the content is fresh and original while maintaining SEO structure:
           - A compelling introduction that hooks the reader
           - 3-4 main sections with H2 headers
-          - Real examples and practical applications
-          - Research-backed insights without being too academic
-          - A strong conclusion with actionable next steps
+          - Different examples and applications than previous posts
+          - Varied research citations and expert insights
+          - A strong conclusion with unique action steps
           - Natural use of headers (## for H2 and ### for H3) only when needed
           - Engaging, conversational tone throughout`
         }
@@ -102,16 +136,8 @@ keywords:
     // Combine frontmatter with content
     const fullContent = `${frontmatter}${content}`
 
-    // Validate using gray-matter
-    try {
-      const parsed = matter(fullContent)
-      if (!parsed.data.title || !parsed.data.date || !parsed.data.tags || !parsed.data.excerpt) {
-        throw new Error('Missing required frontmatter fields')
-      }
-    } catch (error) {
-      console.error('YAML parsing error:', error)
-      throw new Error('Invalid YAML format in frontmatter')
-    }
+    // Add to recent posts after successful generation
+    recentPosts.add(topic)
 
     return fullContent
   } catch (error) {

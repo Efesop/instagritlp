@@ -10,7 +10,9 @@
     "lint": "next lint",
     "generate-posts": "ts-node scripts/generate-blog-posts.ts",
     "test-generate": "ts-node scripts/test-generate.ts",
-    "start-cron": "ts-node scripts/start-cron.ts"
+    "start-cron": "ts-node scripts/start-cron.ts",
+    "generate": "ts-node scripts/test-generate.ts",
+    "start-generator": "ts-node scripts/start-cron.ts"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.4",
