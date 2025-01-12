@@ -17,7 +17,16 @@ const testGeneration = async () => {
       throw new Error('No content generated')
     }
     
-    const slug = topic.toLowerCase().replace(/\s+/g, '-')
+    // Add null check and sanitize topic
+    if (!topic) {
+      throw new Error('No topic selected')
+    }
+    
+    // Ensure topic is a string and sanitize it
+    const slug = typeof topic === 'string' 
+      ? topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      : 'default-post'
+    
     await saveBlogPost(content, slug)
     
     await updateSitemap()

@@ -22,16 +22,19 @@ export function BlogSidebar({ posts, currentSlug }: BlogSidebarProps) {
   // Don't render anything until mounted to prevent hydration mismatch
   if (!mounted) return null
 
-  const currentPost = posts.find(post => post.slug === currentSlug)
-  const allTags = Array.from(new Set(posts.flatMap(post => post.tags)))
+  // Filter out invalid posts
+  const validPosts = posts.filter(post => post?.title && post?.tags)
+
+  const currentPost = validPosts.find(post => post.slug === currentSlug)
+  const allTags = Array.from(new Set(validPosts.flatMap(post => post.tags)))
   const relatedPosts = currentPost 
-    ? posts.filter(post => 
+    ? validPosts.filter(post => 
         post.slug !== currentSlug && 
         post.tags.some(tag => currentPost.tags.includes(tag))
       )
     : []
 
-  const filteredPosts = posts.filter(post => 
+  const filteredPosts = validPosts.filter(post => 
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
   )

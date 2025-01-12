@@ -1,8 +1,8 @@
 import OpenAI from 'openai'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
-import matter from 'gray-matter'
 import { Topic } from './types'
+import matter from 'gray-matter'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing OPENAI_API_KEY environment variable')
@@ -10,7 +10,7 @@ if (!process.env.OPENAI_API_KEY) {
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  dangerouslyAllowBrowser: false // This ensures we're using server-side only
+  dangerouslyAllowBrowser: false
 })
 
 const TOPICS: Topic[] = [
@@ -26,45 +26,97 @@ const TOPICS: Topic[] = [
 
 const generateBlogPost = async (topic: string): Promise<string> => {
   try {
+    const currentDate = new Date()
+    const isoDate = currentDate.toISOString()
+    const year = currentDate.getFullYear()
+
+    // Create frontmatter with proper YAML formatting and spacing
+    const frontmatter = `---
+title: "${topic.charAt(0).toUpperCase() + topic.slice(1)}: A Practical Guide to Lasting Change [${year}]"
+date: "${isoDate}"
+excerpt: "Discover practical, science-backed strategies for ${topic}. Learn how to create lasting change and achieve your goals with proven techniques and real-world examples."
+tags:
+  - "${topic.split(' ').join('-')}"
+  - "self-improvement"
+  - "personal-development"
+keywords:
+  - "${topic}"
+  - "how to ${topic}"
+  - "${topic} tips"
+  - "${topic} strategies"
+  - "improve ${topic}"
+---
+
+`  // Note the double newline after the closing ---
+
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: "You are a professional blog writer. Generate a blog post in MDX format with proper frontmatter."
+          content: `You are an expert content writer specializing in habit formation and self-improvement.
+          Create engaging, informative blog content that:
+          - Is written in a natural, conversational tone
+          - Includes relevant research and expert insights
+          - Uses real-world examples and practical applications
+          - Maintains SEO best practices without being overly structured
+          - Focuses on providing genuine value to readers
+          - Has a clear introduction, 3-4 main sections, and conclusion
+          - Uses headers naturally, only when needed to break up content
+          - Includes actionable takeaways
+
+          IMPORTANT: Do not include any markdown headers at the start of your content. The title is already provided in the frontmatter.
+          Start with a regular paragraph introducing the topic.`
         },
         {
           role: "user",
-          content: `Write a blog post about ${topic}. Include a unique title related to the topic. The response must start with this exact frontmatter format:
-
----
-title: "A Unique Title Here"
-date: "${new Date().toISOString()}"
-excerpt: "A brief description of the post"
-tags:
-  - ${topic.split(' ').join('-')}
-  - self-improvement
----
-
-Then write the main content in markdown. The title MUST be in quotes and MUST NOT contain colons.`
+          content: `Write an engaging, SEO-optimized blog post about ${topic}. 
+          Start with a regular paragraph (no headers).
+          
+          Write the blog post in a natural, flowing style with:
+          - A compelling introduction that hooks the reader
+          - 3-4 main sections with H2 headers
+          - Real examples and practical applications
+          - Research-backed insights without being too academic
+          - A strong conclusion with actionable next steps
+          - Natural use of headers (## for H2 and ### for H3) only when needed
+          - Engaging, conversational tone throughout`
         }
       ],
       temperature: 0.7,
-      max_tokens: 2000,
+      max_tokens: 4000,
       top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0
+      frequency_penalty: 0.3,
+      presence_penalty: 0.2
     })
 
-    return completion.choices[0].message.content || ''
+    let content = completion.choices[0].message.content?.trim() || ''
+    
+    // Remove any leading headers or frontmatter-like content
+    content = content.replace(/^#\s.*?\n/, '')
+    content = content.replace(/^---[\s\S]*?---\n/, '')
+    
+    // Ensure content starts with a newline
+    content = `\n${content.trim()}\n`
+    
+    // Combine frontmatter with content
+    const fullContent = `${frontmatter}${content}`
+
+    // Validate using gray-matter
+    try {
+      const parsed = matter(fullContent)
+      if (!parsed.data.title || !parsed.data.date || !parsed.data.tags || !parsed.data.excerpt) {
+        throw new Error('Missing required frontmatter fields')
+      }
+    } catch (error) {
+      console.error('YAML parsing error:', error)
+      throw new Error('Invalid YAML format in frontmatter')
+    }
+
+    return fullContent
   } catch (error) {
     if (error instanceof OpenAI.APIError) {
-      console.error('OpenAI API Error:', {
-        status: error.status,
-        message: error.message,
-        code: error.code,
-        type: error.type
-      })
+      console.error('OpenAI API Error:', error)
     }
     throw error
   }

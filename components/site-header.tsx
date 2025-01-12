@@ -90,16 +90,16 @@ export function SiteHeader() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
+                <Link href="#pricing" legacyBehavior passHref>
                   <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                    Blog
+                    Pricing
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#pricing" legacyBehavior passHref>
+                <Link href="/blog" legacyBehavior passHref>
                   <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                    Pricing
+                    Blog
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -172,18 +172,18 @@ export function SiteHeader() {
                 Testimonials
               </Link>
               <Link 
-                href="/blog" 
-                className="text-lg font-medium hover:text-blue-600 transition-colors"
-                onClick={handleMenuItemClick}
-              >
-                Blog
-              </Link>
-              <Link 
                 href="#pricing" 
                 className="text-lg font-medium hover:text-blue-600 transition-colors"
                 onClick={handleMenuItemClick}
               >
                 Pricing
+              </Link>
+              <Link 
+                href="/blog" 
+                className="text-lg font-medium hover:text-blue-600 transition-colors"
+                onClick={handleMenuItemClick}
+              >
+                Blog
               </Link>
               <Link 
                 href="https://apps.apple.com/gb/app/instagrit/id6737732671"

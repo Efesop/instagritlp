@@ -3,6 +3,10 @@ import { SiteHeader } from '@/components/site-header'
 import { getBlogPosts } from '@/lib/blog'
 import Link from 'next/link'
 import { formatDate } from '@/lib/utils'
+import { generatePostMetadata } from '@/lib/blog/seo'
+import { Metadata } from 'next'
+import { BlogCTA } from '@/components/blog-cta'
+import { notFound } from 'next/navigation'
 
 // Custom components for MDX
 const components = {
@@ -21,31 +25,48 @@ export const viewport = {
   maximumScale: 1,
 }
 
-export const metadata = {
-  title: 'Blog | Instagrit',
-  description: 'Read our latest articles about building discipline, productivity, and habit formation.',
-  alternates: {
-    canonical: 'https://instagrit.com/blog',
-    languages: {
-      'en-US': 'https://instagrit.com/blog',
-    },
-  },
-}
-
 interface Props {
   params: {
     slug: string
   }
 }
 
-export default async function BlogPost({ params }: Props) {
-  const { slug } = params
+async function getPost(slug: string) {
   const posts = await getBlogPosts()
-  const post = posts.find(p => p.slug === slug)
-  if (!post) return null
+  return posts.find(post => post.slug === slug)
+}
 
-  // Remove the first h1 heading from the content
-  const contentWithoutTitle = post.content.replace(/^#\s+.*$/m, '')
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPost(await params.slug)
+  
+  if (!post) {
+    return {
+      title: 'Post Not Found | Instagrit Blog',
+      description: 'The requested blog post could not be found.'
+    }
+  }
+  
+  return generatePostMetadata({
+    title: post.title,
+    description: post.excerpt,
+    publishedTime: post.date,
+    modifiedTime: post.modifiedDate || post.date,
+    tags: post.tags,
+    slug: post.slug,
+  })
+}
+
+export default async function BlogPost({ params }: Props) {
+  const post = await getPost(await params.slug)
+
+  if (!post) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
+        <p>The requested blog post could not be found.</p>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -61,7 +82,7 @@ export default async function BlogPost({ params }: Props) {
               <Link 
                 key={tag}
                 href={`/blog/tag/${tag}`}
-                className="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition-colors"
+                className="text-sm text-zinc-600 bg-zinc-100 px-2 py-1 rounded hover:bg-zinc-200"
               >
                 {tag}
               </Link>
@@ -69,9 +90,9 @@ export default async function BlogPost({ params }: Props) {
           </div>
         </header>
         
-        <div className="prose prose-lg max-w-none">
-          <MDXRemote source={contentWithoutTitle} components={components} />
-        </div>
+        <MDXRemote source={post.content} components={components} />
+        
+        <BlogCTA />
       </article>
     </>
   )
