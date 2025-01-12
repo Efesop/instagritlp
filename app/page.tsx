@@ -542,6 +542,7 @@ export default function Home() {
                     { text: "How it works", href: "/#how-it-works" },
                     { text: "Pricing", href: "/#pricing" },
                     { text: "Download", href: "https://apps.apple.com/gb/app/instagrit/id6737732671" },
+                    { text: "Blog", href: "/blog" },
                   ].map((link) => (
                     <li key={link.text}>
                       <Link 

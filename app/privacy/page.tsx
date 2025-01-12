@@ -1,13 +1,27 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
+import { Breadcrumbs } from "@/app/components/breadcrumbs"
+import { BreadcrumbsJsonLd } from "@/app/components/json-ld/breadcrumbs"
+
+export const metadata = {
+  title: 'Privacy Policy | Instagrit',
+  description: 'Learn about how we protect your privacy and handle your data at Instagrit.',
+}
 
 export default function PrivacyPolicy() {
+  const breadcrumbs = [
+    { name: 'Home', item: '/' },
+    { name: 'Privacy', item: '/privacy' }
+  ]
+
   return (
     <>
       <SiteHeader />
+      <BreadcrumbsJsonLd items={breadcrumbs} />
       <div className="min-h-screen bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <Breadcrumbs />
           <Link 
             href="/"
             className="group inline-flex items-center gap-2 mb-8 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors"
