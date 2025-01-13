@@ -1,12 +1,11 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { SiteHeader } from '@/components/site-header'
 import { getBlogPosts } from '@/lib/blog'
 import Link from 'next/link'
 import { formatDate } from '@/lib/utils'
 import { generatePostMetadata } from '@/lib/blog/seo'
 import { Metadata } from 'next'
 import { BlogCTA } from '@/components/blog-cta'
-//import { use } from 'react'
+import { ChevronLeft } from 'lucide-react'
 
 // Define types for MDX components
 interface MDXComponentProps {
@@ -105,8 +104,44 @@ export default async function BlogPage({ params }: Props) {
 
   return (
     <>
-      <SiteHeader />
+      {/* <SiteHeader /> */}
       <article className="max-w-4xl mx-auto px-4 py-8">
+        {/* Breadcrumbs */}
+        <nav className="mb-8">
+          <ol className="flex items-center space-x-2 text-sm text-zinc-600">
+            <li>
+              <Link 
+                href="/" 
+                className="hover:text-zinc-900 transition-colors"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="text-zinc-400">/</li>
+            <li>
+              <Link 
+                href="/blog" 
+                className="hover:text-zinc-900 transition-colors"
+              >
+                Blog
+              </Link>
+            </li>
+            <li className="text-zinc-400">/</li>
+            <li className="text-zinc-900 truncate max-w-[200px]">
+              {post.title}
+            </li>
+          </ol>
+        </nav>
+
+        {/* Back button */}
+        <Link 
+          href="/blog"
+          className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 mb-8 group transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+          Back to all posts
+        </Link>
+
         <header className="mb-8">
           <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
           <time className="text-zinc-600 mb-4 block">
