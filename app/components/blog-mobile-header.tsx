@@ -1,18 +1,22 @@
 'use client'
 
-import Link from 'next/link'
-import { ChevronLeft, Search } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
+import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSearchStore } from '@/lib/store/search-store'
 
 interface BlogMobileHeaderProps {
   tags: string[]
-  currentSlug?: string
   currentTag?: string
+  currentSlug?: string
 }
 
-export function BlogMobileHeader({ tags, currentSlug, currentTag }: BlogMobileHeaderProps) {
+export function BlogMobileHeader({ 
+  tags, 
+  currentTag,
+  currentSlug 
+}: BlogMobileHeaderProps) {
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const { searchQuery, setSearchQuery } = useSearchStore()
 
@@ -26,7 +30,7 @@ export function BlogMobileHeader({ tags, currentSlug, currentTag }: BlogMobileHe
               href="/blog"
               className={cn(
                 "text-sm px-3 py-1.5 rounded-full transition-colors hover:scale-105 active:scale-95",
-                !currentTag
+                !currentTag && !currentSlug
                   ? "bg-blue-100 text-blue-700 shadow-sm"
                   : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
               )}

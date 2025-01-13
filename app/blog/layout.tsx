@@ -8,6 +8,7 @@ type LayoutProps = {
   children: ReactNode
   params: Promise<{
     slug?: string
+    tag?: string
   }>
 }
 
