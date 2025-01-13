@@ -1,32 +1,34 @@
-import { NextResponse } from 'next/server'
 import { getBlogPosts } from '@/lib/blog'
+import RSS from 'rss'
+
+export const dynamic = 'force-static'
+export const revalidate = false
 
 export async function GET() {
   const posts = await getBlogPosts()
-  const baseUrl = 'https://instagrit.com'
+  
+  const feed = new RSS({
+    title: 'Instagrit Blog',
+    description: 'Articles about building discipline, productivity, and habit formation',
+    site_url: 'https://instagrit.com',
+    feed_url: 'https://instagrit.com/feed.xml',
+    language: 'en',
+    pubDate: new Date(),
+  })
 
-  const rss = `<?xml version="1.0" encoding="UTF-8" ?>
-    <rss version="2.0">
-      <channel>
-        <title>Instagrit Blog</title>
-        <link>${baseUrl}</link>
-        <description>Progress Through Shared Discipline</description>
-        <language>en</language>
-        ${posts.map(post => `
-          <item>
-            <title>${post.title}</title>
-            <link>${baseUrl}/blog/${post.slug}</link>
-            <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-            <description>${post.excerpt}</description>
-          </item>
-        `).join('')}
-      </channel>
-    </rss>`
+  posts.forEach((post) => {
+    feed.item({
+      title: post.title,
+      description: post.excerpt,
+      url: `https://instagrit.com/blog/${post.slug}`,
+      date: post.date,
+      categories: post.tags,
+    })
+  })
 
-  return new NextResponse(rss, {
+  return new Response(feed.xml(), {
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate',
     },
   })
 } 

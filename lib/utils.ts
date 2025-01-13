@@ -25,7 +25,7 @@ export function formatDate(dateString: string) {
       day: 'numeric',
       year: 'numeric'
     })
-  } catch (error) {
-    return 'Invalid Date'
+  } catch {
+    return null
   }
 }

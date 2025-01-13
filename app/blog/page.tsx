@@ -1,4 +1,4 @@
-import { Metadata, Viewport } from 'next'
+//import { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@/components/site-header'
 import { Breadcrumbs } from '@/app/components/breadcrumbs'
 import { BreadcrumbsJsonLd } from '@/app/components/json-ld/breadcrumbs'

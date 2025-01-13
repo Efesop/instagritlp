@@ -40,7 +40,6 @@ export const updateSitemap = async (): Promise<void> => {
 }
 
 export const generateRSSFeed = async (): Promise<void> => {
-  const posts = await getBlogPosts()
-  // Implementation for generating RSS feed
+  await getBlogPosts()
   console.log('RSS feed generated')
 } 

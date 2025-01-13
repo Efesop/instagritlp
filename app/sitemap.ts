@@ -1,37 +1,45 @@
 import { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 
+export const dynamic = 'force-static'
+export const revalidate = false
+
+type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.SITE_URL || 'https://instagrit.com'
   const posts = await getBlogPosts()
+  
+  // Static routes
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: 'https://instagrit.com',
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
+      priority: 1.0
+    },
+    {
+      url: 'https://instagrit.com/blog',
+      lastModified: new Date(),
+      changeFrequency: 'daily' as ChangeFreq,
+      priority: 0.8
+    }
+  ]
 
-  // Group posts by year/month for better organization
-  const blogRoutes = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
+  // Blog routes
+  const blogRoutes: MetadataRoute.Sitemap = posts.map(post => ({
+    url: `https://instagrit.com/blog/${post.slug}`,
+    lastModified: new Date(post.modifiedDate || post.date),
+    changeFrequency: 'weekly' as ChangeFreq,
+    priority: 0.6
   }))
 
-  // Tag pages
-  const tags = [...new Set(posts.flatMap(post => post.tags))]
-  const tagRoutes = tags.map(tag => ({
-    url: `${baseUrl}/blog/tag/${tag}`,
+  // Tag routes
+  const tags = Array.from(new Set(posts.flatMap(post => post.tags)))
+  const tagRoutes: MetadataRoute.Sitemap = tags.map(tag => ({
+    url: `https://instagrit.com/blog/tag/${tag}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }))
-
-  const staticRoutes = [
-    '',
-    '/blog',
-    '/privacy',
-    '/terms',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === '' ? 'daily' : 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
+    changeFrequency: 'weekly' as ChangeFreq,
+    priority: 0.4
   }))
 
   return [...staticRoutes, ...blogRoutes, ...tagRoutes]

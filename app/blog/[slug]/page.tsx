@@ -6,17 +6,46 @@ import { formatDate } from '@/lib/utils'
 import { generatePostMetadata } from '@/lib/blog/seo'
 import { Metadata } from 'next'
 import { BlogCTA } from '@/components/blog-cta'
-import { notFound } from 'next/navigation'
+//import { use } from 'react'
 
-// Custom components for MDX
+// Define types for MDX components
+interface MDXComponentProps {
+  children: React.ReactNode
+  className?: string
+}
+
+// Update types to handle Promise
+type Params = Promise<{
+  slug: string
+}>
+
+type Props = {
+  params: Params
+}
+
+// Custom components for MDX with proper types
 const components = {
-  h2: (props: any) => <h2 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-  h3: (props: any) => <h3 className="text-2xl font-semibold mt-6 mb-3" {...props} />,
-  p: (props: any) => <p className="mb-4 text-zinc-700 leading-relaxed" {...props} />,
-  ul: (props: any) => <ul className="list-disc pl-6 mb-4" {...props} />,
-  ol: (props: any) => <ol className="list-decimal pl-6 mb-4" {...props} />,
-  li: (props: any) => <li className="mb-2" {...props} />,
-  strong: (props: any) => <strong className="font-semibold" {...props} />,
+  h2: ({ children, ...props }: MDXComponentProps) => (
+    <h2 className="text-3xl font-bold mt-8 mb-4" {...props}>{children}</h2>
+  ),
+  h3: ({ children, ...props }: MDXComponentProps) => (
+    <h3 className="text-2xl font-semibold mt-6 mb-3" {...props}>{children}</h3>
+  ),
+  p: ({ children, ...props }: MDXComponentProps) => (
+    <p className="mb-4 text-zinc-700 leading-relaxed" {...props}>{children}</p>
+  ),
+  ul: ({ children, ...props }: MDXComponentProps) => (
+    <ul className="list-disc pl-6 mb-4" {...props}>{children}</ul>
+  ),
+  ol: ({ children, ...props }: MDXComponentProps) => (
+    <ol className="list-decimal pl-6 mb-4" {...props}>{children}</ol>
+  ),
+  li: ({ children, ...props }: MDXComponentProps) => (
+    <li className="mb-2" {...props}>{children}</li>
+  ),
+  strong: ({ children, ...props }: MDXComponentProps) => (
+    <strong className="font-semibold" {...props}>{children}</strong>
+  ),
 }
 
 export const viewport = {
@@ -25,19 +54,16 @@ export const viewport = {
   maximumScale: 1,
 }
 
-interface Props {
-  params: {
-    slug: string
-  }
-}
-
 async function getPost(slug: string) {
   const posts = await getBlogPosts()
   return posts.find(post => post.slug === slug)
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPost(await params.slug)
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const resolvedParams = await params
+  const post = await getPost(resolvedParams.slug)
   
   if (!post) {
     return {
@@ -56,8 +82,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-export default async function BlogPost({ params }: Props) {
-  const post = await getPost(await params.slug)
+export async function generateStaticParams() {
+  const posts = await getBlogPosts()
+  
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+export default async function BlogPage({ params }: Props) {
+  const resolvedParams = await params
+  const post = await getPost(resolvedParams.slug)
 
   if (!post) {
     return (
