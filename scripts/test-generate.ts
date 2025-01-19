@@ -9,7 +9,7 @@ console.log('API Key present:', !!process.env.OPENAI_API_KEY)
 
 const testGeneration = async () => {
   try {
-    // Select a random topic
+    // Simply pick a random topic
     const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
     console.log('Generating post about:', topic)
     
