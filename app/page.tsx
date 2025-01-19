@@ -73,13 +73,14 @@ export default function Home() {
               
               {/* Heading */}
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 md:mb-8">
-                Get Disciplined With{" "}
-                <span className="inline-flex">
-                  <span className="relative inline-flex whitespace-nowrap">
+                F*!# Motivation.{" "}
+                <div className="inline">
+                  Build Discipline With{" "}
+                  <span className="relative inline-flex">
                     {'Friends'.split('').map((letter, i) => (
                       <span 
                         key={i}
-                        className="text-blue-600 text-5xl md:text-7xl animate-letter-bounce"
+                        className="text-blue-600 animate-letter-bounce"
                         style={{ 
                           animationDelay: `${i * 100}ms`,
                         }}
@@ -88,12 +89,12 @@ export default function Home() {
                       </span>
                     ))}
                   </span>
-                </span>
+                </div>
               </h1>
               
               {/* Description */}
               <p className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-16">
-                Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.
+                Stop relying on motivation. Build lasting discipline through shared accountability and daily habits. Perfect for the unmotivated.
               </p>
               
               {/* Action buttons and social proof */}
@@ -118,7 +119,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-semibold">50+ users</span>
-                    <span className="text-xs text-zinc-500">Share a task with a friend</span>
+                    <span className="text-xs text-zinc-500">Share a duty with a friend</span>
                   </div>
                 </div>
               </div>
@@ -126,7 +127,7 @@ export default function Home() {
               {/* Features list */}
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
                 {[
-                  { text: "Share Tasks", icon: "🤝" },
+                  { text: "Share Duties", icon: "🤝" },
                   { text: "Track Progress", icon: "📊" },
                   { text: "Build habits", icon: "🔥" },
                   { text: "Get disciplined", icon: "⚡" }
@@ -226,7 +227,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-t border-zinc-100">
             {[
               { label: "Active Users", value: "50+", trend: "+50% this month" },
-              { label: "Tasks Completed", value: "350+", trend: "+200% this week" },
+              { label: "Duties Completed", value: "350+", trend: "+200% this week" },
               { label: "Avg. Streak", value: "3 Days", trend: "↑ 2 days" },
               { label: "App Rating", value: "4.9/5", trend: "⭐ App Store" },
             ].map((stat) => (
@@ -251,7 +252,7 @@ export default function Home() {
                 Your path to most resistance
               </h2>
               <p className="text-zinc-500 text-lg font-medium">
-                Everything you need to become more disciplined
+                Motivation is sh!#. Here's what you need to become disciplined
               </p>
             </div>
 
@@ -259,7 +260,7 @@ export default function Home() {
               {[
                 {
                   icon: <TrackingIcon className="text-blue-600" />,
-                  title: "Smart Task Tracking",
+                  title: "Smart Duty Tracking",
                   description: "Set daily duties, track progress, and never lose sight of your goals",
                   hoverGradient: "from-blue-500/10 to-blue-600/10",
                   underlineGradient: "from-blue-500/50 to-blue-600/50"
@@ -379,14 +380,14 @@ export default function Home() {
                 period="month"
                 popular={true}
                 features={[
-                  { text: "Create tasks/duties", included: true },
-                  { text: "Task sharing with friends", included: true },
-                  { text: "Task history and notifications", included: true },
+                  { text: "Create duties", included: true },
+                  { text: "Duty sharing with friends", included: true },
+                  { text: "Duty history and notifications", included: true },
                   { text: "Daily streaks and trophies", included: true },
                   { text: "Dark mode", included: true },
-                  { text: "Categorise tasks", included: true },
+                  { text: "Categorise duties", included: true },
                   { text: "Analytics and tracking", included: true },
-                  { text: "Task progress visualisations", included: true },
+                  { text: "Duty progress visualisations", included: true },
                   { text: "Daily rank monitoring", included: true },
                 ]}
                 appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
@@ -397,14 +398,14 @@ export default function Home() {
                 title="Lifetime"
                 price="£39.99"
                 features={[
-                  { text: "Create tasks/duties", included: true },
-                  { text: "Task sharing with friends", included: true },
-                  { text: "Task history and notifications", included: true },
+                  { text: "Create duties", included: true },
+                  { text: "Duty sharing with friends", included: true },
+                  { text: "Duty history and notifications", included: true },
                   { text: "Daily streaks and trophies", included: true },
                   { text: "Dark mode", included: true },
-                  { text: "Categorise tasks", included: true },
+                  { text: "Categorise duties", included: true },
                   { text: "Analytics and tracking", included: true },
-                  { text: "Task progress visualisations", included: true },
+                  { text: "Duty progress visualisations", included: true },
                   { text: "Daily rank monitoring", included: true },
                 ]}
                 appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
@@ -416,14 +417,14 @@ export default function Home() {
                   title="Free"
                   price="£0"
                   features={[
-                    { text: "Create tasks/duties", included: true },
-                    { text: "Task sharing with friends", included: true },
-                    { text: "Task history and notifications", included: true },
+                    { text: "Create duties", included: true },
+                    { text: "Duty sharing with friends", included: true },
+                    { text: "Duty history and notifications", included: true },
                     { text: "Daily streaks and trophies", included: true },
                     { text: "Dark mode", included: true },
-                    { text: "Categorise tasks", included: false },
+                    { text: "Categorise duties", included: false },
                     { text: "Analytics and tracking", included: false },
-                    { text: "Task progress visualisations", included: false },
+                    { text: "Duty progress visualisations", included: false },
                     { text: "Daily rank monitoring", included: false },
                   ]}
                   appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
@@ -458,7 +459,7 @@ export default function Home() {
 
               <div className="relative z-10 px-6 py-24 sm:px-16 sm:py-32 text-center">
                 <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                  Ready to build better habits?
+                  Ready to get disciplined?
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-blue-100 max-w-2xl mx-auto">
                   Join our community who are already transforming their lives with Instagrit.
