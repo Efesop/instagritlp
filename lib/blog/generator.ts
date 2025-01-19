@@ -37,32 +37,32 @@ const TOPICS: Topic[] = [
 ]
 
 // Track recently generated posts to avoid duplicates
-const recentPosts = new Set<string>()
+// const recentPosts = new Set<string>()
 
 // Add function to check existing posts
-const checkExistingPosts = async (): Promise<Set<string>> => {
-  try {
-    const blogDir = join(process.cwd(), 'content/blog')
-    const files = await readdir(blogDir)
-    
-    // Sort files by creation time (most recent first)
-    const sortedFiles = files.sort().reverse().slice(0, TOPICS.length)
-    const existingTopics = new Set<string>()
-    
-    for (const file of sortedFiles) {
-      const content = await readFile(join(blogDir, file), 'utf8')
-      const { data } = matter(content)
-      if (data.tags && data.tags[0]) {
-        existingTopics.add(data.tags[0].replace(/-/g, ' '))
-      }
-    }
-    
-    return existingTopics
-  } catch (error) {
-    console.error('Error checking existing posts:', error)
-    return new Set()
-  }
-}
+// const checkExistingPosts = async (): Promise<Set<string>> => {
+//   try {
+//     const blogDir = join(process.cwd(), 'content/blog')
+//     const files = await readdir(blogDir)
+//     
+//     // Sort files by creation time (most recent first)
+//     const sortedFiles = files.sort().reverse().slice(0, TOPICS.length)
+//     const existingTopics = new Set<string>()
+//     
+//     for (const file of sortedFiles) {
+//       const content = await readFile(join(blogDir, file), 'utf8')
+//       const { data } = matter(content)
+//       if (data.tags && data.tags[0]) {
+//         existingTopics.add(data.tags[0].replace(/-/g, ' '))
+//       }
+//     }
+//     
+//     return existingTopics
+//   } catch (error) {
+//     console.error('Error checking existing posts:', error)
+//     return new Set()
+//   }
+// }
 
 const generateBlogPost = async (topic: string): Promise<string> => {
   const currentDate = new Date()
@@ -104,7 +104,7 @@ const generateBlogPost = async (topic: string): Promise<string> => {
         ## Face Your Fears Head-On
         
         Note: Headers should sound natural and direct - like advice from a friend or mentor who doesn't sugar-coat things.
-
+        
         FORMAT:
         First line: Title (no markdown)
         Second line: Brief, engaging excerpt (1-2 sentences)
@@ -122,7 +122,7 @@ const generateBlogPost = async (topic: string): Promise<string> => {
     frequency_penalty: 0.3
   })
 
-  let content = completion.choices[0].message.content?.trim() || ''
+  const content = completion.choices[0].message.content?.trim() || ''
   
   // Extract first line as title and clean it
   const lines = content.split('\n')
