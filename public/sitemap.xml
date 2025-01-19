@@ -7,6 +7,20 @@
         </url>
         
             <url>
+              <loc>https://instagrit.com/blog/discipline-mindset-1737266185053</loc>
+              <lastmod>2025-01-19T05:56:10.681Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.8</priority>
+            </url>
+          
+            <url>
+              <loc>https://instagrit.com/blog/motivation-science-1737265867509</loc>
+              <lastmod>2025-01-19T05:50:52.553Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.8</priority>
+            </url>
+          
+            <url>
               <loc>https://instagrit.com/blog/time-management-1737262284208</loc>
               <lastmod>2025-01-19T04:50:56.999Z</lastmod>
               <changefreq>weekly</changefreq>
@@ -21,20 +35,6 @@
             </url>
           
             <url>
-              <loc>https://instagrit.com/blog/accountability-1737260615805</loc>
-              <lastmod>2025-01-19T04:23:16.064Z</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-          
-            <url>
-              <loc>https://instagrit.com/blog/goal-setting-1736830842882</loc>
-              <lastmod>2025-01-14T05:00:24.841Z</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-          
-            <url>
               <loc>https://instagrit.com/blog/productivity-1736679814888</loc>
               <lastmod>2025-01-12T11:03:15.396Z</lastmod>
               <changefreq>weekly</changefreq>
@@ -44,13 +44,6 @@
             <url>
               <loc>https://instagrit.com/blog/motivation-1736678841029</loc>
               <lastmod>2025-01-12T10:46:54.463Z</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-          
-            <url>
-              <loc>https://instagrit.com/blog/habit-formation-1736677805771</loc>
-              <lastmod>2025-01-12T10:29:41.899Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>

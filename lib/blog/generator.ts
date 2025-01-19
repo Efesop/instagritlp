@@ -64,76 +64,82 @@ const checkExistingPosts = async (): Promise<Set<string>> => {
   }
 }
 
-async function generateUniqueTitle(topic: string): Promise<string> {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4",
-    messages: [
-      {
-        role: "system",
-        content: "Generate a unique, engaging blog post title about the given topic. Avoid generic patterns. Make it specific and compelling. Do not include quotation marks in the title."
-      },
-      {
-        role: "user",
-        content: `Create a unique title for a blog post about ${topic}. Don't use "A Practical Guide" or similar generic patterns. The title should be plain text without any quotation marks.`
-      }
-    ],
-    temperature: 0.8,
-    max_tokens: 50
-  })
-  
-  // Clean up the title by removing any quotes and extra whitespace
-  const title = completion.choices[0].message.content?.trim()
-    .replace(/["']/g, '')
-    .replace(/\s+/g, ' ') || 
-    `${topic.charAt(0).toUpperCase() + topic.slice(1)}`
-  
-  return title
-}
-
-async function generateUniqueExcerpt(topic: string): Promise<string> {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4",
-    messages: [
-      {
-        role: "system",
-        content: "Generate a unique, compelling excerpt for a blog post. Make it specific and avoid generic patterns. Keep it under 200 characters."
-      },
-      {
-        role: "user",
-        content: `Write a unique, engaging excerpt for a blog post about ${topic}. Don't use generic patterns like "Discover practical, science-backed strategies...". Keep it concise and focused.`
-      }
-    ],
-    temperature: 0.8,
-    max_tokens: 100
-  })
-  
-  // Clean up the excerpt and ensure it ends with proper punctuation
-  const excerpt = completion.choices[0].message.content?.trim()
-    .replace(/["']/g, '')
-    .replace(/\s+/g, ' ') || 
-    `Learn effective strategies for ${topic}.`
-  
-  // Ensure the excerpt ends with proper punctuation
-  return excerpt.endsWith('.') ? excerpt : excerpt + '.'
-}
-
 const generateBlogPost = async (topic: string): Promise<string> => {
-  try {
-    // Check both recent and existing posts
-    const existingTopics = await checkExistingPosts()
-    // if (recentPosts.some(post => post.tags[0] === topic)) {
-    //   throw new Error(`Recently generated post about ${topic}. Skipping to maintain uniqueness.`)
-    // }
+  const currentDate = new Date()
+  const isoDate = currentDate.toISOString()
 
-    const currentDate = new Date()
-    const isoDate = currentDate.toISOString()
-    const year = currentDate.getFullYear()
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      {
+        role: "system",
+        content: `You are an expert content writer specializing in habit formation and self-improvement.
+        Create unique, engaging content that:
+        - Takes fresh, thought-provoking angles on topics
+        - Alternates between intellectual analysis and direct, no-excuses approaches
+        - Sometimes uses a tough-love, direct style
+        - Challenges conventional wisdom when appropriate
+        - References varied research and studies
+        - Provides fresh insights while maintaining SEO best practices
+        - Is written in a natural, conversational tone
+        - Includes actionable takeaways
 
-    // Create frontmatter with proper YAML formatting and spacing
-    const frontmatter = `---
-title: "${await generateUniqueTitle(topic)}"
+        CONTENT STRUCTURE:
+        - Start with a compelling opening paragraph
+        - Include 3-4 main sections with ## headers
+        - Headers should be unique and engaging (not "Section 1", "Introduction", etc.)
+        - Each section should be 2-3 paragraphs
+        - End with a strong final section (avoid using "Conclusion" or "Wrapping Up")
+        
+        HEADER EXAMPLES:
+        ## Why Most People Get It Wrong
+        ## The Truth About Showing Up
+        ## Stop Making These Common Mistakes
+        ## When Motivation Isn't Enough
+        ## Building Real Mental Toughness
+        ## No More Excuses
+        ## The Hard Way Works Better
+        ## Small Wins Lead to Big Changes
+        ## Getting Started (Even When You Don't Want To)
+        ## Face Your Fears Head-On
+        
+        Note: Headers should sound natural and direct - like advice from a friend or mentor who doesn't sugar-coat things.
+
+        FORMAT:
+        First line: Title (no markdown)
+        Second line: Brief, engaging excerpt (1-2 sentences)
+        Then: Main content with headers
+
+        Never use "Title:", "Meta Description:", or "Introduction:" labels.`
+      },
+      {
+        role: "user",
+        content: `Write a unique, engaging blog post about ${topic} with clear section headers.`
+      }
+    ],
+    temperature: 0.7,
+    max_tokens: 4000,
+    frequency_penalty: 0.3
+  })
+
+  let content = completion.choices[0].message.content?.trim() || ''
+  
+  // Extract first line as title and clean it
+  const lines = content.split('\n')
+  const title = lines[0].replace(/^#\s*/, '').replace(/\*\*/g, '').trim()
+  
+  // Get excerpt from second non-empty line
+  const excerpt = lines.find((line, index) => index > 0 && line.trim().length > 0)?.trim() || 
+    `Discover fresh insights about ${topic} that challenge conventional wisdom and transform your approach.`
+  
+  // Get main content starting from third line
+  const mainContent = lines.slice(2).join('\n').trim()
+
+  // Create frontmatter
+  const frontmatter = `---
+title: "${title}"
 date: "${isoDate}"
-excerpt: "${await generateUniqueExcerpt(topic)}"
+excerpt: "${excerpt}"
 tags:
   - "${topic.split(' ').join('-')}"
   - "self-improvement"
@@ -146,88 +152,9 @@ keywords:
   - "improve ${topic}"
 ---
 
-`  // Note the double newline after the closing ---
+${mainContent}`
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4",
-      messages: [
-        {
-          role: "system",
-          content: `You are an expert content writer specializing in habit formation and self-improvement.
-          Create unique, engaging content that:
-          - Uses different examples and case studies each time
-          - References varied research and studies
-          - Provides fresh insights while maintaining SEO best practices
-          - Focuses on providing unique value to readers
-          - Has a clear introduction, 3-4 main sections, and conclusion
-          - Is written in a natural, conversational tone
-          - Uses headers naturally, only when needed
-          - Includes actionable takeaways
-
-        IMPORTANT TITLE GUIDELINES:
-        - Create unique, varied titles that don't follow patterns like "Unlocking X" or "The Power of X"
-        - Avoid using similar structures between posts
-        - Mix up title formats: questions, statements, numbers, how-tos, etc.
-        - Make each title distinct and specific to the content
-        
-        IMPORTANT DESCRIPTION GUIDELINES:
-        - Write unique descriptions that don't start with "Unlock" or "Discover"
-        - Vary the sentence structure and approach
-        - Focus on specific benefits or insights
-        - Make each description distinct from other posts
-        
-        Do not include any markdown headers at the start. The title is already provided.
-        Start with a regular paragraph introducing the topic.`
-      },
-      {
-        role: "user",
-        content: `Write a unique, SEO-optimized and engaging blog post about ${topic}. 
-        Start with a regular paragraph (no headers).
-        
-        Create a title and description that are completely different from these patterns:
-        - "Unlocking X: The Y Power of Z"
-        - "Discover practical, science-backed strategies..."
-        
-        Ensure the content is fresh and original while maintaining SEO structure:
-        - A compelling introduction that hooks the reader
-        - 3-4 main sections with H2 headers
-        - Different examples and applications than previous posts
-        - Varied research citations and expert insights
-        - A strong conclusion with unique action steps
-        - Natural use of headers (## for H2 and ### for H3) only when needed
-        - Engaging, conversational tone throughout`
-      }
-    ],
-    
-    temperature: 0.7,
-    max_tokens: 4000,
-    top_p: 1,
-    frequency_penalty: 0.3,
-    presence_penalty: 0.2
-    })
-
-    let content = completion.choices[0].message.content?.trim() || ''
-    
-    // Remove any leading headers or frontmatter-like content
-    content = content.replace(/^#\s.*?\n/, '')
-    content = content.replace(/^---[\s\S]*?---\n/, '')
-    
-    // Ensure content starts with a newline
-    content = `\n${content.trim()}\n`
-    
-    // Combine frontmatter with content
-    const fullContent = `${frontmatter}${content}`
-
-    // Add to recent posts after successful generation
-    recentPosts.add(topic)
-
-    return fullContent
-  } catch (error) {
-    if (error instanceof OpenAI.APIError) {
-      console.error('OpenAI API Error:', error)
-    }
-    throw error
-  }
+  return frontmatter
 }
 
 const saveBlogPost = async (content: string, slug: string): Promise<void> => {
