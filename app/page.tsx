@@ -260,8 +260,8 @@ export default function Home() {
               {[
                 {
                   icon: <TrackingIcon className="text-blue-600" />,
-                  title: "Smart Duty Tracking",
-                  description: "Set daily duties, track progress, and never lose sight of your goals",
+                  title: "Shared Duty Tracking",
+                  description: "Share duties with friends, track progress and keep each other accountable",
                   hoverGradient: "from-blue-500/10 to-blue-600/10",
                   underlineGradient: "from-blue-500/50 to-blue-600/50"
                 },
@@ -359,12 +359,37 @@ export default function Home() {
         <section className="w-full py-12 sm:py-24 bg-gradient-to-b from-zinc-50/50 to-white" id="pricing">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center space-y-4 max-w-2xl mx-auto mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
                 Pricing
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground">
                 Start free, upgrade if you need it.
               </p>
+            </div>
+
+            {/* Free Trial Message - Moved above pricing toggle */}
+            <div className="mb-8 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100/50 shadow-sm">
+                <span className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+                  </span>
+                  <span className="text-sm font-medium bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    14-day free trial
+                  </span>
+                </span>
+                <span className="text-sm text-zinc-500">
+                  No credit card needed.{" "}
+                  <Link 
+                    href="https://apps.apple.com/gb/app/instagrit/id6737732671" 
+                    className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                  >
+                    Learn more
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </span>
+              </div>
             </div>
 
             {/* Pricing Toggle */}
@@ -409,6 +434,7 @@ export default function Home() {
                   { text: "Daily rank monitoring", included: true },
                 ]}
                 appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
+                savings="Save £2.59/mo"
               />
 
               {/* Free Card - Shows last on mobile */}
@@ -418,10 +444,10 @@ export default function Home() {
                   price="£0"
                   features={[
                     { text: "Create duties", included: true },
-                    { text: "Duty sharing with friends", included: true },
                     { text: "Duty history and notifications", included: true },
                     { text: "Daily streaks and trophies", included: true },
                     { text: "Dark mode", included: true },
+                    { text: "Duty sharing with friends", included: false },
                     { text: "Categorise duties", included: false },
                     { text: "Analytics and tracking", included: false },
                     { text: "Duty progress visualisations", included: false },
@@ -430,16 +456,6 @@ export default function Home() {
                   appStoreUrl="https://apps.apple.com/gb/app/instagrit/id6737732671"
                 />
               </div>
-            </div>
-
-            {/* FAQ or Additional Info */}
-            <div className="mt-8 sm:mt-16 text-center">
-              <p className="text-xs sm:text-sm text-zinc-500">
-                Cancel anytime through iOS app store.{" "}
-                <Link href="https://apps.apple.com/gb/app/instagrit/id6737732671" className="text-blue-600 hover:text-blue-700">
-                  Learn more
-                </Link>
-              </p>
             </div>
           </div>
         </section>

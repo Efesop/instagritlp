@@ -21,6 +21,13 @@ export function SiteHeader() {
     document.body.style.overflow = 'auto'
   }
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (window.location.pathname !== '/') {
+      e.preventDefault()
+      window.location.href = href
+    }
+  }
+
   return (
     <>
       <header className="sticky top-0 z-[101] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -69,8 +76,9 @@ export function SiteHeader() {
                       ].map((item) => (
                         <Link
                           key={item.title}
-                          href={item.href || "#"}
+                          href={item.href}
                           className="group grid gap-1 p-3 hover:bg-accent rounded-lg transition-colors"
+                          onClick={(e) => handleNavigation(e, item.href)}
                         >
                           <h3 className="text-sm font-semibold">{item.title}</h3>
                           <p className="text-sm text-muted-foreground">
@@ -153,14 +161,20 @@ export function SiteHeader() {
               <Link 
                 href="/#path-to-resistance" 
                 className="text-lg font-medium hover:text-blue-600 transition-colors"
-                onClick={handleMenuItemClick}
+                onClick={(e) => {
+                  handleNavigation(e, '/#path-to-resistance');
+                  handleMenuItemClick();
+                }}
               >
                 What is Instagrit?
               </Link>
               <Link 
                 href="/#how-it-works" 
                 className="text-lg font-medium hover:text-blue-600 transition-colors"
-                onClick={handleMenuItemClick}
+                onClick={(e) => {
+                  handleNavigation(e, '/#how-it-works');
+                  handleMenuItemClick();
+                }}
               >
                 How it works
               </Link>
@@ -172,9 +186,12 @@ export function SiteHeader() {
                 Testimonials
               </Link>
               <Link 
-                href="#pricing" 
+                href="/#pricing"
                 className="text-lg font-medium hover:text-blue-600 transition-colors"
-                onClick={handleMenuItemClick}
+                onClick={(e) => {
+                  handleNavigation(e, '/#pricing');
+                  handleMenuItemClick();
+                }}
               >
                 Pricing
               </Link>

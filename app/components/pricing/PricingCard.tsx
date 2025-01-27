@@ -16,6 +16,7 @@ interface PricingCardProps {
   appStoreUrl: string
   yearlyPrice?: string
   isLifetime?: boolean
+  savings?: string
 }
 
 export function PricingCard({ 
@@ -26,7 +27,7 @@ export function PricingCard({
   popular, 
   appStoreUrl,
   yearlyPrice,
-  //isLifetime
+  savings,
 }: PricingCardProps) {
   const [currentPrice, setCurrentPrice] = useState(price)
   const [currentPeriod, setCurrentPeriod] = useState(period)
@@ -63,6 +64,11 @@ export function PricingCard({
           <span className="text-4xl font-bold tracking-tight text-zinc-900">{currentPrice}</span>
           {currentPeriod && (
             <span className="ml-1 text-sm font-semibold text-zinc-600">/{currentPeriod}</span>
+          )}
+          {savings && (
+            <span className="ml-3 inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
+              {savings}
+            </span>
           )}
         </div>
       </div>
