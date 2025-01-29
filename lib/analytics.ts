@@ -1,7 +1,7 @@
 export const trackDownload = () => {
-  gtag('event', 'app_download_click', {
-    'event_category': 'engagement',
-    'event_label': 'download',
-    'click': 'download'
-  });
+  if (typeof window !== 'undefined' && typeof gtag !== 'undefined') {
+    gtag('event', 'app_download_click', {
+      click: 'download'
+    });
+  }
 }; 
