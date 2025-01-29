@@ -116,7 +116,7 @@ export default function Home() {
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 md:mb-8">
                 F*!# Motivation.{" "}
                 <div className="inline">
-                  Build Discipline With{" "}
+                  Get Disciplined With{" "}
                   <span className="relative inline-flex">
                     {'Friends'.split('').map((letter, i) => (
                       <span 

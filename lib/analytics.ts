@@ -4,10 +4,10 @@ export const trackDownload = () => {
     return;
   }
 
-  // Using recommended event format from docs
-  gtag('event', 'generate_lead', {  // Using a recommended event name
+  // Using a recommended event name
+  gtag('event', 'generate_lead', {
     currency: 'USD',
-    value: 1,  // Value of the conversion
-    source: 'app_store_click'  // Custom parameter
+    value: 1,
+    source: 'app_store'
   });
 }; 
