@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationJsonLd } from '@/app/components/json-ld/organization'
 import { SoftwareAppJsonLd } from '@/app/components/json-ld/software-app'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,18 @@ export const metadata: Metadata = {
   title: "Instagrit - Progress Through Shared Discipline",
   description: "Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.",
   metadataBase: new URL('https://instagrit.com'),
-  keywords: ['habit tracker', 'discipline', 'productivity', 'task management', 'accountability', 'shared tasks'],
+  keywords: [
+    'discipline app',
+    'habit tracking',
+    'accountability partner',
+    'goal tracking',
+    'productivity app',
+    'self improvement app',
+    'habit formation',
+    'discipline building',
+    'shared accountability',
+    'iOS habit tracker'
+  ],
   authors: [{ name: 'Ollie Efez' }],
   creator: 'Ollie Efez',
   publisher: 'Instagrit',
@@ -118,6 +130,7 @@ export default function RootLayout({
         {children}
         <OrganizationJsonLd />
         <SoftwareAppJsonLd />
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-ST41DN8P7N" />
       </body>
     </html>
   );
