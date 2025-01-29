@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Instagrit - Progress Through Shared Discipline",
+  title: "Instagrit - Group Discipline For The Unmotivated",
   description: "Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.",
   metadataBase: new URL('https://instagrit.com'),
   keywords: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://instagrit.com',
-    title: 'Instagrit - Progress Through Shared Discipline',
+    title: 'Instagrit - Group Discipline For The Unmotivated',
     description: 'Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.',
     siteName: 'Instagrit',
     images: [
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
         url: '/app/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Instagrit - Progress Through Shared Discipline',
+        alt: 'Instagrit - Group Discipline For The Unmotivated',
         type: 'image/png',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Instagrit - Progress Through Shared Discipline',
+    title: 'Instagrit - Group Discipline For The Unmotivated',
     description: 'Take control and transform your life—together. Share tasks, track progress, and stay accountable with friends and teammates.',
     creator: '@efesopoulos',
     images: [
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: '/app/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Instagrit - Progress Through Shared Discipline',
+        alt: 'Instagrit - Group Discipline For The Unmotivated',
       }
     ],
   },
