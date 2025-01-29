@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, CheckCircle, Target, Star } from "lucide-react"
+import { ArrowRight, CheckCircle, Target, Star, ChevronDown } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { IPhoneMockup } from "@/components/iphone-mockup"
 import { Card } from "@/components/ui/card"
@@ -9,6 +9,8 @@ import { TrackingIcon, StreakIcon, AnalyticsIcon } from '@/components/features/F
 import { FeatureShowcase } from "./components/features/FeatureShowcase"
 import { PricingCard } from "./components/pricing/PricingCard"
 import { PricingToggle } from "./components/pricing/PricingToggle"
+import { FAQItem } from '@/components/faq-item'
+import { FAQPageJsonLd } from '@/app/components/json-ld/faq'
 
 interface TestimonialProps {
   quote: string
@@ -53,6 +55,33 @@ const AppStoreButton = () => {
 }
 
 export default function Home() {
+  const faqData = [
+    {
+      question: "What makes Instagrit different from other discipline building apps?",
+      answer: "Instagrit focuses on shared accountability and discipline rather than motivation. By connecting you with friends who share similar goals we create a support system that keeps you consistent even when motivation fades."
+    },
+    {
+      question: "How does the shared accountability feature work?",
+      answer: "You can share duties (tasks/habits) with friends and both of you will be notified of each other's progress. This creates mutual accountability and increases the likelihood of staying consistent."
+    },
+    {
+      question: "Is Instagrit free to use?",
+      answer: "Yes! Instagrit offers a free tier that includes core features like duty creation, history tracking, achievements and basic notifications. You'll also get a 14 day free trial of all premium features (no credit card required) when you sign up. Premium features like duty sharing, analytics, categories and advanced tracking are available through our paid plans."
+    },
+    {
+      question: "Can I track multiple duties at once?",
+      answer: "Absolutely! You can create and track multiple duties simultaneously, organizing them by categories to stay focused on what matters most."
+    },
+    {
+      question: "How do streaks and achievements work in Instagrit?",
+      answer: "Streaks are counted each day you complete your duties. They serve as a visual motivator and help build momentum. Achievements are earned when you complete certain objectives and hit milestones."
+    },
+    {
+      question: "What happens if I miss a day?",
+      answer: "Missing a day resets your streak, but you'll be rewarded for getting back on track! Instagrit is about building long-term discipline, not perfection. You can always start fresh and learn from what caused the miss."
+    }
+  ]
+
   return (
     <>
       <SiteHeader />
@@ -460,6 +489,38 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <section id="faq" className="w-full bg-gradient-to-b from-white to-zinc-50/50 py-24">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-zinc-500 text-lg">
+                Everything you need to know about getting disciplined with Instagrit
+              </p>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30">
+                <div className="absolute inset-0 rotate-45 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 blur-3xl" />
+                <div className="absolute inset-0 -rotate-45 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 blur-3xl" />
+              </div>
+            </div>
+
+            <div className="relative max-w-3xl mx-auto space-y-4">
+              {faqData.map((faq, index) => (
+                <FAQItem 
+                  key={index}
+                  question={faq.question}
+                  answer={faq.answer}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="w-full py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -545,7 +606,7 @@ export default function Home() {
                   </span>
                 </Link>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  Building discipline through shared accountability. Join our community of motivated individuals.
+                  Building discipline through shared accountability. Join our motivated movement.
                 </p>
               </div>
 
@@ -666,6 +727,12 @@ export default function Home() {
           </div>
         </footer>
       </div>
+      <FAQPageJsonLd
+        mainEntity={faqData.map(({ question, answer }) => ({
+          questionName: question,
+          acceptedAnswerText: answer,
+        }))}
+      />
     </>
   )
 }
