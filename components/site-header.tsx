@@ -6,6 +6,7 @@ import { Button } from "./ui/button"
 import { ArrowRight, Menu, X } from "lucide-react"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu"
 import { useState } from "react"
+import { trackDownload } from '@/lib/analytics'
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -118,6 +119,7 @@ export function SiteHeader() {
           <div className="ml-auto flex items-center space-x-4">
             <Link 
               href="https://apps.apple.com/gb/app/instagrit/id6737732671"
+              onClick={trackDownload}
               className="hidden md:inline-flex"
             >
               <Button variant="default" className="group">
@@ -204,8 +206,11 @@ export function SiteHeader() {
               </Link>
               <Link 
                 href="https://apps.apple.com/gb/app/instagrit/id6737732671"
+                onClick={() => {
+                  trackDownload();
+                  handleMenuItemClick();
+                }}
                 className="w-full max-w-[200px]"
-                onClick={handleMenuItemClick}
               >
                 <Button variant="default" className="w-full group">
                   Download Now

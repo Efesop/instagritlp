@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, CheckCircle, Target, Star, ChevronDown } from "lucide-react"
@@ -11,6 +13,7 @@ import { PricingCard } from "./components/pricing/PricingCard"
 import { PricingToggle } from "./components/pricing/PricingToggle"
 import { FAQItem } from '@/components/faq-item'
 import { FAQPageJsonLd } from '@/app/components/json-ld/faq'
+import { trackDownload } from '@/lib/analytics'
 
 interface TestimonialProps {
   quote: string
@@ -33,11 +36,20 @@ function Testimonial({ quote, author, rating }: TestimonialProps) {
 }
 
 const AppStoreButton = () => {
-  const imagePath = '/iosdownload.svg'  // Direct reference from public directory
+  const imagePath = '/iosdownload.svg'
+  
+  const handleClick = () => {
+    gtag('event', 'click', {
+      'event_category': 'engagement',
+      'event_label': 'download',
+      'click': 'download'
+    });
+  }
   
   return (
     <Link 
       href="https://apps.apple.com/gb/app/instagrit/id6737732671"
+      onClick={handleClick}
       className="relative group transform-gpu"
     >
       <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity will-change-transform backface-hidden" />
@@ -545,6 +557,7 @@ export default function Home() {
                 <div className="mt-10 flex items-center justify-center gap-6 flex-wrap">
                   <Link 
                     href="https://apps.apple.com/gb/app/instagrit/id6737732671"
+                    onClick={trackDownload}
                     className="group relative inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-600 transition-all duration-300 hover:bg-blue-50 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
                   >
                     Download Now
